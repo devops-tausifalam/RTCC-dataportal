@@ -161,6 +161,7 @@ document
       })
       .saveServiceData(data);
   });
+<<<<<<< HEAD
 
 //   handle viewport
 (function () {
@@ -181,3 +182,5 @@ document
     );
   }
 })();
+=======
+>>>>>>> 875a399 (revamped service form, and seggregated code)
