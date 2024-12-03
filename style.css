@@ -14,7 +14,10 @@ body {
 }
 body {
   background: url("background.jpg");
-  background-size: cover;
+  background-repeat: no-repeat;  /* Prevent image repetition */
+  background-size: cover;  /* Make the image cover the entire screen */
+  background-attachment: fixed;  /* Keep the background fixed during scrolling */
+  background-position: center center;  /* Center the image */
   transform: scale(0.9); /* Shrink the page to 90% */
   height: 100%;
   width: 100%;
@@ -30,11 +33,9 @@ main.master-container {
   display: flex;
   flex: 1 1 auto;
   box-sizing: border-box;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
   margin: 0 auto;
   border-radius: 5px;
-  height: 100%;
-  overflow-y: scroll;
   overflow-x: hidden;
 }
 
@@ -42,7 +43,7 @@ main.master-container div.container {
   display: grid;
   grid-template-columns: 360px 1fr; /* Two columns: fixed left, flexible right */
   grid-template-rows: auto auto; /* Two rows for stacking */
-  gap: 100px; /* Space between grid items */
+  gap: 100px;
   width: 100%; /* Full width */
   box-sizing: border-box;
 }
@@ -63,8 +64,6 @@ main.master-container div.container {
   grid-column: 2; /* Right column */
   grid-row: 2; /* Second row */
   padding: 30px;
-  /* margin:35px -30px; */
-  margin: -150px 0 0 10px;
 }
 
 /* service form */
@@ -84,7 +83,6 @@ div.service-form-container div.s-container #serviceForm {
   border: 1px solid #c7c7c7;
   border-radius: 5px;
   padding: 10px;
-  height: 95%;
 }
 
 div.service-form-container div.s-container h1 {
@@ -139,24 +137,24 @@ div.service-form-container div.s-container #serviceForm label {
 }
 
 /* service typer form */
-div.service-type-forn-container h1 {
+div.service-type-form-container h1 {
   font-size: 2rem;
   color: #f2cc20;
 }
-div.service-type-forn-container div.st-container #serviceTypeForm {
+div.service-type-form-container div.st-container #serviceTypeForm {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
   grid-template-rows: 1fr 1fr; /* Two equal rows */
   gap: 20px; /* Optional: adds space between items */
 }
 
-div.service-type-forn-container div.st-container #serviceTypeForm fieldset {
+div.service-type-form-container div.st-container #serviceTypeForm fieldset {
   border: 1px solid #c7c7c7;
   border-radius: 5px;
   padding: 10px;
   margin-top: 10px;
 }
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   fieldset
@@ -171,7 +169,7 @@ div.service-type-forn-container
 }
 
 /* Style for the checkbox */
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   input[type="checkbox"] {
@@ -188,7 +186,7 @@ div.service-type-forn-container
 }
 
 /* When the checkbox is checked */
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   input[type="checkbox"]:checked {
@@ -198,7 +196,7 @@ div.service-type-forn-container
 }
 
 /* When the checkbox is hovered */
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   input[type="checkbox"]:hover {
@@ -206,7 +204,7 @@ div.service-type-forn-container
 }
 
 /* Adding the checkmark (✔) when checked */
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   input[type="checkbox"]:checked::before {
@@ -222,13 +220,13 @@ div.service-type-forn-container
 }
 
 /* Optional: Add some padding inside the checkbox to make space for the checkmark */
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   input[type="checkbox"] {
   padding: 4px; /* Adds padding on the left side for checkmark */
 }
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   .checkbox-label {
@@ -236,7 +234,7 @@ div.service-type-forn-container
   margin: 0;
   cursor: pointer; /* Optional: makes label clickable */
 }
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   .checkbox-label
@@ -245,7 +243,7 @@ div.service-type-forn-container
   color: #ffffff;
   font-weight: 500;
 }
-div.service-type-forn-container
+div.service-type-form-container
   div.st-container
   #serviceTypeForm
   .checkbox-label
@@ -254,6 +252,7 @@ div.service-type-forn-container
   margin: 2.5px;
   color: #ffffff;
   font-weight: 400;
+  direction: rtl;
 }
 
 /* table-wrapper */
@@ -265,9 +264,9 @@ div.table-wrapper {
   overflow-y: scroll;
   padding: 20px; /* Add space around the table */
 }
-div.table-wrapper h1{
-    font-size: 2rem;
-    color: #f02b2b;
+div.table-wrapper h1 {
+  font-size: 2rem;
+  color: #f02b2b;
 }
 /* Table container inside the wrapper */
 div.table-wrapper div.table-container {
@@ -303,8 +302,8 @@ div.table-wrapper div.table-container table td {
   text-align: left; /* Align text inside cells */
   border: 1px solid #c7c7c9; /* Light border around cells */
 }
-div.table-wrapper div.table-container table tr:last-of-type{
-    border-radius: 5px;
+div.table-wrapper div.table-container table tr:last-of-type {
+  border-radius: 5px;
 }
 /* Table row hover effect */
 div.table-wrapper div.table-container table tr:hover {
