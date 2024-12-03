@@ -109,7 +109,9 @@ select:focus {
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Bootstrap blue */
   border-color: #0d6efd; /* Bootstrap blue */
 }
-
+div.service-form-container div.s-container #serviceForm input[type=date] {
+    width: 340px;   
+}
 div.service-form-container div.s-container #serviceForm button[type="submit"] {
   margin: 10px auto;
   width: 340px;
