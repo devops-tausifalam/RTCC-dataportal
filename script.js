@@ -161,3 +161,21 @@ document
       })
       .saveServiceData(data);
   });
+//   handle viewport
+(function () {
+  const desktopWidth = 1200; // Fixed desktop width
+  const viewport = document.querySelector('meta[name="viewport"]');
+  if (window.innerWidth < desktopWidth) {
+    viewport.setAttribute(
+      "content",
+      `width=${desktopWidth}, initial-scale=${
+        window.innerWidth / desktopWidth
+      }, user-scalable=no`
+    );
+  } else {
+    viewport.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1, user-scalable=no"
+    );
+  }
+})();
