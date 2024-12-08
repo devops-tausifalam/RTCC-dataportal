@@ -10,7 +10,33 @@ async function fetchMachinesData() {
     console.error("Error fetching machines data:", error);
   }
 }
+function fetchData(headers,tbody,selectedValue) {
+  console.log("selectedValue----"+selectedValue);
+  google.script.run
+    .withSuccessHandler((data) => {
+      console.log("Data received:", data); // This will log the JSON string returned
+     processReceivedData(JSON.parse(data),tbody,headers);// Pass the data to another function to process
+    })
+    .withFailureHandler((error) => {
+      console.error("Error fetching data:", error);
+    })
+    .fetchRowsByPlateSelection(selectedValue);
+}
+function processReceivedData(data,tbody,headers) {
+  // Populate rows
+  
+  data.forEach(row => {
+    const tr = document.createElement("tr");
 
+    headers.forEach(header => {
+      const td = document.createElement("td");
+      td.textContent = row[header];
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+  });
+}
 function populateCoNoDropdown(machines) {
   const plateCoNoSelect = document.getElementById("plateCoNo");
 
@@ -25,26 +51,7 @@ function populateCoNoDropdown(machines) {
   console.log("Dropdown populated with Codes.");
 }
 
-document.getElementById("plateCoNo").addEventListener("change", function () {
-  const selectedCode = this.value;
-  const modelInput = document.getElementById("model");
 
-  if (!selectedCode) {
-    modelInput.value = "";
-    return;
-  }
-
-  const machines = JSON.parse(localStorage.getItem("machinesData")) || [];
-  const selectedMachine = machines.find(
-    (machine) => machine.code === selectedCode
-  );
-
-  if (selectedMachine) {
-    modelInput.value = selectedMachine.model;
-  } else {
-    modelInput.value = "";
-  }
-});
 
 function updateType() {
   const engineOil = document.getElementById("engineOil").checked;
@@ -161,21 +168,97 @@ document
       })
       .saveServiceData(data);
   });
-//   handle viewport
+
+
 (function () {
-  const desktopWidth = 1200; // Fixed desktop width
   const viewport = document.querySelector('meta[name="viewport"]');
-  if (window.innerWidth < desktopWidth) {
-    viewport.setAttribute(
-      "content",
-      `width=${desktopWidth}, initial-scale=${
-        window.innerWidth / desktopWidth
-      }, user-scalable=no`
-    );
-  } else {
-    viewport.setAttribute(
-      "content",
-      "width=device-width, initial-scale=1, user-scalable=no"
-    );
-  }
+
+  // Dynamically set viewport width and height based on browser window
+  const availableWidth = window.innerWidth;
+  const availableHeight = window.innerHeight;
+
+  viewport.setAttribute(
+    "content",
+    `width=${availableWidth}, height=${availableHeight}, initial-scale=1, user-scalable=no`
+  );
+
+  // Adjust the body and HTML to fit content
+  document.documentElement.style.height = `${availableHeight}px`;
+ // document.documentElement.style.overflow = "hidden";
+  document.body.style.height = `${availableHeight}px`;
+  document.body.style.overflow = "hidden";
 })();
+
+
+// This script assumes the DOM is already loaded since it runs at the end of the document.
+
+
+const dropdown = document.getElementById("plateCoNo");
+
+dropdown.addEventListener("change", async () => { 
+  const selectedValue = dropdown.value;
+
+  // Clear existing table data
+ // tableBody.innerHTML = "";
+
+  if (selectedValue) {
+    createTable(selectedValue);
+  } else {
+    //tableBody.innerHTML = "<tr><td colspan='3'>No data available</td></tr>";
+  }
+});
+function createTable(selectedValue) {
+  const tableContainer = document.getElementById("tableContainer");
+
+  // Clear existing content in the container
+  tableContainer.innerHTML = "";
+
+  // Create a wrapper div for the table with fixed height
+  const wrapper = document.createElement("div");
+  wrapper.style.maxHeight = "530px"; 
+  wrapper.style.overflowY = "auto"; // Enable vertical scrolling
+  wrapper.style.border = "1px solid #ccc"; // Optional: Add border for clarity
+  // Create the table element
+  const table = document.createElement("table");
+  table.border = "1";
+  table.style.width = "100%";
+  table.style.borderCollapse = "collapse"; // Optional: Cleaner table look
+
+  // Add the table header
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  // Define headers
+  const headers = ["DATE", "MODEL", "CONO", "HOUR", "TYPE"];
+  headers.forEach(header => {
+    const th = document.createElement("th");
+    th.textContent = header;
+    th.style.position = "sticky"; // Make header sticky
+    th.style.top = "0"; // Fix it to the top
+    th.style.backgroundColor = "#d3d3d3";// Optional: Header background color
+    th.style.zIndex = "1"; // Ensure header stays above content
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Add the table body
+  const tbody = document.createElement("tbody");
+ 
+  const  data = fetchData(headers,tbody,selectedValue);
+  
+
+
+  // Filter the rows where column C (index 2) matches the value, excluding the header row
+ 
+ 
+
+  table.appendChild(tbody);
+
+  // Append the table to the wrapper
+  wrapper.appendChild(table);
+
+  // Append the wrapper to the container
+  tableContainer.appendChild(wrapper);
+}
