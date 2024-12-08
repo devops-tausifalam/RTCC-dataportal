@@ -10,25 +10,25 @@ async function fetchMachinesData() {
     console.error("Error fetching machines data:", error);
   }
 }
-function fetchData(headers,tbody,selectedValue) {
-  console.log("selectedValue----"+selectedValue);
+function fetchData(headers, tbody, selectedValue) {
+  console.log("selectedValue----" + selectedValue);
   google.script.run
     .withSuccessHandler((data) => {
       console.log("Data received:", data); // This will log the JSON string returned
-     processReceivedData(JSON.parse(data),tbody,headers);// Pass the data to another function to process
+      processReceivedData(JSON.parse(data), tbody, headers); // Pass the data to another function to process
     })
     .withFailureHandler((error) => {
       console.error("Error fetching data:", error);
     })
     .fetchRowsByPlateSelection(selectedValue);
 }
-function processReceivedData(data,tbody,headers) {
+function processReceivedData(data, tbody, headers) {
   // Populate rows
-  
-  data.forEach(row => {
+
+  data.forEach((row) => {
     const tr = document.createElement("tr");
 
-    headers.forEach(header => {
+    headers.forEach((header) => {
       const td = document.createElement("td");
       td.textContent = row[header];
       tr.appendChild(td);
@@ -51,15 +51,14 @@ function populateCoNoDropdown(machines) {
   console.log("Dropdown populated with Codes.");
 }
 
-
-
 function updateType() {
   const engineOil = document.getElementById("engineOil").checked;
   const oilFilter = document.getElementById("oilFilter").checked;
   const airFilter = document.getElementById("airFilter").checked;
   const hydOil = document.getElementById("hydOil").checked;
   const returnFilter = document.getElementById("returnFilter").checked;
-  const transmissionOil = document.getElementById("transmissionOil").checked;
+  const transmissionOil =
+    document.getElementById("transmissionOil").checked;
   const transmissionFilter =
     document.getElementById("transmissionFilter").checked;
 
@@ -155,8 +154,8 @@ document
     }
 
     google.script.run
-      .withSuccessHandler((response) => {
-        console.log("Data saved successfully:", response);
+      .withSuccessHandler((data) => {
+        console.log("Data saved successfully:", data);
         event.target.reset();
 
         document
@@ -168,7 +167,6 @@ document
       })
       .saveServiceData(data);
   });
-
 
 (function () {
   const viewport = document.querySelector('meta[name="viewport"]');
@@ -184,27 +182,40 @@ document
 
   // Adjust the body and HTML to fit content
   document.documentElement.style.height = `${availableHeight}px`;
- // document.documentElement.style.overflow = "hidden";
+  // document.documentElement.style.overflow = "hidden";
   document.body.style.height = `${availableHeight}px`;
   document.body.style.overflow = "hidden";
 })();
 
-
 // This script assumes the DOM is already loaded since it runs at the end of the document.
-
 
 const dropdown = document.getElementById("plateCoNo");
 
-dropdown.addEventListener("change", async () => { 
+dropdown.addEventListener("change", async () => {
   const selectedValue = dropdown.value;
 
   // Clear existing table data
- // tableBody.innerHTML = "";
+  // tableBody.innerHTML = "";
 
   if (selectedValue) {
     createTable(selectedValue);
+
+    // fill model field
+    const modelInput = document.getElementById("model");
+    const machines =
+      JSON.parse(localStorage.getItem("machinesData")) || [];
+    const selectedMachine = machines.find(
+      (machine) => machine.code === selectedValue
+    );
+
+    if (selectedMachine) {
+      modelInput.value = selectedMachine.model;
+    } else {
+      modelInput.value = "";
+    }
   } else {
-    //tableBody.innerHTML = "<tr><td colspan='3'>No data available</td></tr>";
+    tableBody.innerHTML =
+      "<tr><td colspan='3'>No data available</td></tr>";
   }
 });
 function createTable(selectedValue) {
@@ -215,7 +226,7 @@ function createTable(selectedValue) {
 
   // Create a wrapper div for the table with fixed height
   const wrapper = document.createElement("div");
-  wrapper.style.maxHeight = "530px"; 
+  wrapper.style.maxHeight = "530px";
   wrapper.style.overflowY = "auto"; // Enable vertical scrolling
   wrapper.style.border = "1px solid #ccc"; // Optional: Add border for clarity
   // Create the table element
@@ -230,12 +241,12 @@ function createTable(selectedValue) {
 
   // Define headers
   const headers = ["DATE", "MODEL", "CONO", "HOUR", "TYPE"];
-  headers.forEach(header => {
+  headers.forEach((header) => {
     const th = document.createElement("th");
     th.textContent = header;
     th.style.position = "sticky"; // Make header sticky
     th.style.top = "0"; // Fix it to the top
-    th.style.backgroundColor = "#d3d3d3";// Optional: Header background color
+    th.style.backgroundColor = "#f2cc20"; // Optional: Header background color
     th.style.zIndex = "1"; // Ensure header stays above content
     headerRow.appendChild(th);
   });
@@ -245,14 +256,10 @@ function createTable(selectedValue) {
 
   // Add the table body
   const tbody = document.createElement("tbody");
- 
-  const  data = fetchData(headers,tbody,selectedValue);
-  
 
+  const data = fetchData(headers, tbody, selectedValue);
 
   // Filter the rows where column C (index 2) matches the value, excluding the header row
- 
- 
 
   table.appendChild(tbody);
 

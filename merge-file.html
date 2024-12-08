@@ -38,7 +38,7 @@
         box-sizing: border-box;
       }
       body {
-        background: url("background.jpg");
+        background: url("https://devops-tausifalam.github.io/servicecord/background.jpg");
         background-repeat: no-repeat; /* Prevent image repetition */
         background-size: cover; /* Make the image cover the entire screen */
         background-attachment: fixed; /* Keep the background fixed during scrolling */
@@ -298,7 +298,7 @@
       }
       div.table-wrapper h1 {
         font-size: 2rem;
-        color: #f02b2b;
+        color: #f2cc20;
       }
       /* Table container inside the wrapper */
       div.table-wrapper div.table-container {
@@ -809,8 +809,8 @@
           }
 
           google.script.run
-            .withSuccessHandler((response) => {
-              console.log("Data saved successfully:", response);
+            .withSuccessHandler((data) => {
+              console.log("Data saved successfully:", data);
               event.target.reset();
 
               document
@@ -854,8 +854,23 @@
 
         if (selectedValue) {
           createTable(selectedValue);
+
+          // fill model field
+          const modelInput = document.getElementById("model");
+          const machines =
+            JSON.parse(localStorage.getItem("machinesData")) || [];
+          const selectedMachine = machines.find(
+            (machine) => machine.code === selectedValue
+          );
+
+          if (selectedMachine) {
+            modelInput.value = selectedMachine.model;
+          } else {
+            modelInput.value = "";
+          }
         } else {
-          //tableBody.innerHTML = "<tr><td colspan='3'>No data available</td></tr>";
+          tableBody.innerHTML =
+            "<tr><td colspan='3'>No data available</td></tr>";
         }
       });
       function createTable(selectedValue) {
@@ -886,7 +901,7 @@
           th.textContent = header;
           th.style.position = "sticky"; // Make header sticky
           th.style.top = "0"; // Fix it to the top
-          th.style.backgroundColor = "#d3d3d3"; // Optional: Header background color
+          th.style.backgroundColor = "#f2cc20"; // Optional: Header background color
           th.style.zIndex = "1"; // Ensure header stays above content
           headerRow.appendChild(th);
         });
