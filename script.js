@@ -57,8 +57,7 @@ function updateType() {
   const airFilter = document.getElementById("airFilter").checked;
   const hydOil = document.getElementById("hydOil").checked;
   const returnFilter = document.getElementById("returnFilter").checked;
-  const transmissionOil =
-    document.getElementById("transmissionOil").checked;
+  const transmissionOil = document.getElementById("transmissionOil").checked;
   const transmissionFilter =
     document.getElementById("transmissionFilter").checked;
 
@@ -155,7 +154,6 @@ document
 
     google.script.run
       .withSuccessHandler((data) => {
-        console.log("Data saved successfully:", data);
         event.target.reset();
 
         document
@@ -164,27 +162,38 @@ document
             checkbox.checked = false;
           });
         document.getElementById("type").value = "";
+
+        window.alert("Data successfully submited:", data);
       })
       .saveServiceData(data);
+
+      google.script.run.withFailureHandler((err) => {
+        window.alert("Unknown error occured!!!", err);
+      });
   });
 
+//   handle viewport
 (function () {
-  const viewport = document.querySelector('meta[name="viewport"]');
-
-  // Dynamically set viewport width and height based on browser window
-  const availableWidth = window.innerWidth;
+  const desktopWidth = 1200; // Fixed desktop width
   const availableHeight = window.innerHeight;
-
-  viewport.setAttribute(
-    "content",
-    `width=${availableWidth}, height=${availableHeight}, initial-scale=1, user-scalable=no`
-  );
-
+  const viewport = document.querySelector('meta[name="viewport"]');
+  if (window.innerWidth < desktopWidth) {
+    viewport.setAttribute(
+      "content",
+      `width=${desktopWidth}, initial-scale=${
+        window.innerWidth / desktopWidth
+      }, user-scalable=no`
+    );
+  } else {
+    viewport.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1, user-scalable=no"
+    );
+  }
   // Adjust the body and HTML to fit content
   document.documentElement.style.height = `${availableHeight}px`;
   // document.documentElement.style.overflow = "hidden";
   document.body.style.height = `${availableHeight}px`;
-  document.body.style.overflow = "hidden";
 })();
 
 // This script assumes the DOM is already loaded since it runs at the end of the document.
@@ -202,8 +211,7 @@ dropdown.addEventListener("change", async () => {
 
     // fill model field
     const modelInput = document.getElementById("model");
-    const machines =
-      JSON.parse(localStorage.getItem("machinesData")) || [];
+    const machines = JSON.parse(localStorage.getItem("machinesData")) || [];
     const selectedMachine = machines.find(
       (machine) => machine.code === selectedValue
     );
@@ -214,8 +222,7 @@ dropdown.addEventListener("change", async () => {
       modelInput.value = "";
     }
   } else {
-    tableBody.innerHTML =
-      "<tr><td colspan='3'>No data available</td></tr>";
+    tableBody.innerHTML = "<tr><td colspan='3'>No data available</td></tr>";
   }
 });
 function createTable(selectedValue) {

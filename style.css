@@ -12,13 +12,14 @@ body {
   box-sizing: border-box;
 }
 body {
-  background: url("background.jpg");
+  background: url("https://lectura.press/media-storage/press_releases/thumb_big_m_retina/hx160a_l(389).jpg");
         background-repeat: no-repeat; /* Prevent image repetition */
         background-size: cover; /* Make the image cover the entire screen */
         background-attachment: fixed; /* Keep the background fixed during scrolling */
         background-position: center center; /* Center the image */
-        transform: scale(0.9); /* Shrink the page to 90% */
+        transform: scale(0.9); /* reduce to 90% */
         width: 100%;
+        overflow-x: hidden;
 }
 div.flex-wrapper {
   width: 100%;
@@ -40,16 +41,14 @@ p.notification {
   border-radius: 5px;
   height: 100%;
 } */
-
 main.master-container div.container {
   display: grid;
   grid-template-columns: 360px 1fr; /* Two columns: fixed left, flexible right */
   grid-template-rows: auto auto; /* Two rows for stacking */
-  gap: 100px; /* Space between grid items */
+
   width: 100%; /* Full width */
   box-sizing: border-box;
 }
-
 .left {
   grid-column: 1; /* Left column */
   grid-row: 1 / span 2; /* Span across both rows */
@@ -59,7 +58,6 @@ main.master-container div.container {
   grid-column: 2; /* Right column */
   grid-row: 1; /* First row */
   padding: 30px;
-  margin: 20px 10px;
 }
 
 .middle {
@@ -67,7 +65,8 @@ main.master-container div.container {
   grid-row: 2; /* Second row */
   padding: 30px;
   /* margin:35px -30px; */
-  margin: -150px 0 0 10px;
+  /* margin: -150px 0 0 10px; */
+
 }
 
 /* service form */
@@ -76,9 +75,11 @@ div.service-form-container {
   display: flex;
   flex: 1 1 auto;
   width: 360px;
-  padding: 30px;
-  margin: 10px;
+  padding: 20px;
+  margin: 5px;
   border-radius: 10px;
+  position: fixed;
+  top: 0;
 }
 
 div.service-form-container div.s-container #serviceForm {
@@ -86,11 +87,11 @@ div.service-form-container div.s-container #serviceForm {
   flex-direction: column;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  padding: 10px;
+  padding: 5px;
 }
 
 div.service-form-container div.s-container h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   margin: 5px;
   color: #f2cc20;
@@ -99,14 +100,25 @@ div.service-form-container div.s-container h1 {
 div.service-form-container div.s-container #serviceForm input,
 select {
   outline: none;
-  padding: 10px 20px;
-  margin: 10px;
+  padding: 10px 5px;
   border: 1px solid #c7c7c7;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
+  width: 90%;
+  margin: 0 auto;
 }
-
+/* adjusting select width */
+select {
+  outline: none;
+  padding: 10px 5px;
+  border: 1px solid #c7c7c7;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 95%;
+  margin: 0 auto;
+}
 div.service-form-container div.s-container #serviceForm input:focus,
 select:focus {
   outline: 0;
@@ -114,9 +126,9 @@ select:focus {
   border-color: #0d6efd; /* Bootstrap blue */
 }
 div.service-form-container div.s-container #serviceForm button[type="submit"] {
-  margin: 10px auto;
-  width: 340px;
-  padding: 10px;
+  margin: 5px auto;
+  width: 90%;
+  padding: 5px;
   border: none;
   outline: none;
   border-radius: 5px;
@@ -141,21 +153,23 @@ div.service-form-container div.s-container #serviceForm label {
 
 /* service typer form */
 div.service-type-forn-container h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #f2cc20;
 }
 div.service-type-forn-container div.st-container #serviceTypeForm {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  grid-template-rows: 1fr 1fr; /* Two equal rows */
-  gap: 20px; /* Optional: adds space between items */
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  margin: 0 auto;
 }
 
 div.service-type-forn-container div.st-container #serviceTypeForm fieldset {
   border: 1px solid #c7c7c7;
   border-radius: 5px;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 5px;
+  width: 100%;
+  margin: 10px;
 }
 div.service-type-forn-container
   div.st-container
@@ -265,7 +279,7 @@ div.table-wrapper {
   padding: 20px; /* Add space around the table */
 }
 div.table-wrapper h1{
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #f2cc20;
 }
 /* Table container inside the wrapper */
@@ -275,14 +289,16 @@ div.table-wrapper div.table-container {
   border-radius: 10px; /* Rounded corners for container */
   background-color: #f5f5f5;
   border-radius: 5px;
+  max-height: 50%;
+  overflow-y: scroll;
+  position: relative;
 }
-
 /* Table styling */
 div.table-wrapper div.table-container table {
   width: 100%; /* Table takes full width */
   border-collapse: collapse; /* Collapse table borders for a cleaner look */
   table-layout: fixed; /* Ensures the table cells don't expand unpredictably */
-  margin: 0; /* Remove margins for better layout control */
+  margin: 0 10px 0 0; /* Remove margins for better layout control */
   border-radius: 5px;
 }
 
@@ -315,6 +331,7 @@ div.table-wrapper div.table-container table td input[type="checkbox"] {
   margin-right: 10px; /* Space between checkbox and label */
   vertical-align: middle; /* Align checkbox vertically with the label */
 }
+
 /* fix viewport for small screens */
 @viewport {
   width: 1024px !important;
