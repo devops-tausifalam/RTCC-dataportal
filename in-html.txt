@@ -1,0 +1,51 @@
+function createTable(selectedValue) {
+  const tableContainer = document.getElementById("tableContainer");
+
+  // Clear existing content in the container
+  tableContainer.innerHTML = "";
+
+  // Create a wrapper div for the table with fixed height
+  const wrapper = document.createElement("div");
+  wrapper.style.maxHeight = "530px";
+  wrapper.style.overflowY = "auto"; // Enable vertical scrolling
+  wrapper.style.border = "1px solid #ccc"; // Optional: Add border for clarity
+  // Create the table element
+  const table = document.createElement("table");
+  table.border = "1";
+  table.style.width = "100%";
+  table.style.borderCollapse = "collapse"; // Optional: Cleaner table look
+
+  // Add the table header
+  const thead = document.createElement("thead");
+  const headerRow = document.createElement("tr");
+
+  // Define headers
+  const headers = ["DATE", "MODEL", "CONO", "HOUR", "TYPE"];
+  headers.forEach((header) => {
+    const th = document.createElement("th");
+    th.textContent = header;
+    th.style.position = "sticky"; // Make header sticky
+    th.style.top = "0"; // Fix it to the top
+    th.style.backgroundColor = "#f2cc20"; // Optional: Header background color
+    th.style.zIndex = "1"; // Ensure header stays above content
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Add the table body
+  const tbody = document.createElement("tbody");
+
+  const data = fetchData(headers, tbody, selectedValue);
+
+  // Filter the rows where column C (index 2) matches the value, excluding the header row
+
+  table.appendChild(tbody);
+
+  // Append the table to the wrapper
+  wrapper.appendChild(table);
+
+  // Append the wrapper to the container
+  tableContainer.appendChild(wrapper);
+}
