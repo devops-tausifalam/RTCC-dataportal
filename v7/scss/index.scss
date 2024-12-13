@@ -1,1 +1,4 @@
+@use "global.scss" as g; //global variables
 @use "body-wrapper.scss"; //body and outer-wrapper styles
+@use "inside-Fwrapper.scss"; //inside form wrapper styles
+@use "inside-Rwrapper"; // record wrapper styles

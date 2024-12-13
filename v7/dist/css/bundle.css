@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -24,27 +25,54 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
 }
 
 .form-wrapper {
-  border: 1px solid;
   padding: 10px;
   width: 60%;
   height: 100%;
   box-sizing: border-box;
-  overflow-y: scroll;
-  background: #f5f5f5;
+  overflow-y: visible;
+  background-image: #ffffff;
 }
 
 .record-wrapper {
-  border: 1px solid;
   padding: 10px;
   width: 40%;
   height: 100%;
-  background: black;
+  background: #000000;
+  background-blend-mode: multiply;
   box-sizing: border-box;
   overflow-y: scroll;
+}
+
+@media screen and (max-width: 768px) {
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-wrapper {
+    width: 100%;
+  }
+  .record-wrapper {
+    width: 100%;
+  }
+}
+.notes {
+  font-size: 0.8em;
+  color: #8a8a8a;
+}
+
+.form-wrapper h1 {
+  font-size: 2em;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.record-wrapper h1 {
+  font-size: 2em;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=bundle.css.map */
