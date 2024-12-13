@@ -15,30 +15,19 @@
     <div class="outer-wrapper">
         <div class="content-wrapper">
             <div class="form-wrapper">
-                  <h2 class="heading">
-                    Service Record Form
-                  </h2>
-                  <p class="notes">
-                        Fill up details of machine and service type below.
-                  </p>
                 <!-- markup for #serviceForm -->
                  <form id="serviceForm">
                     <!-- powered by appScript and webScraping -->
                      <h3>Machine Information</h3>
                      <div class="row">
-                        <label for="dateService">
-                            Service Date:
-                        </label>
                         <input type="date" name="date" id="dateService" required>
-
-                        <label for="plateCoNo">Plate / Code:</label>
                         <select id="plateCoNo" name="plateCoNo" required>
-                            <option value="">Select Code</option>
+                            <option value="">Plate/CoNo</option>
                             <!-- Code options will be populated dynamically -->
                         </select>
                      </div>
+                     <h3>Select service Type</h3>
                      <div class="grid">
-                        <h3>Select service Type</h3>
                         <section class="engineService">
                             <h4>Engine Service</h4>
                             <div class="select-wrapper">
@@ -227,7 +216,7 @@
                        id="type"
                        autocomplete="off"
                        name="type"
-                       placeholder="write here"
+                       placeholder="readonly"
                        required
                        readonly
                      />
@@ -256,9 +245,6 @@
                  </form>
             </div>
             <div class="record-wrapper">
-                <h1>
-                    Service Record
-                </h1>
                 <div class="controls">
                     
                 </div>

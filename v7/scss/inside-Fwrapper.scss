@@ -1,11 +1,121 @@
 @use "global.scss" as g; //global variables
 
-.notes {
-    font-size: 0.8em;
-    color: g.$notes-text;
+form#serviceForm {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 10px auto;
 }
-.form-wrapper h1 {
-    font-size: 2em;
+
+form#serviceForm h3 {
+    margin: 10px 0;
+    padding: 5px;
+    font-size: 1.5rem;
+}
+
+div.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5px;
+}
+
+.engineService {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.hydService {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.transService {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.otherService {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+div.row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+input {
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+input:focus {
+    border: 2px solid #0D92F4;
+}
+
+#plateCoNo {
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    /* Added border for consistency */
+    background-color: #f9f9f9;
+    width: 100%;
+}
+
+button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+    background-color: #0D92F4;
     color: g.$primary;
-    font-weight: map-get(g.$font-weight, "bold");
+    cursor: pointer;
+}
+button:active{
+    background-color: #77CDFF;
+}
+
+input[type="date"] {
+    position: relative;
+    padding: 10px 10px 10px 100px;
+}
+
+input[type="date"]::before {
+    content: "Service Date:";
+    position: absolute;
+    top: 11px;
+    left: 5px;
+    font-size: 0.9em;
+    color: g.$notes-text;
+    /* Change this to your desired label color */
+}
+// labels of service type
+h4 {
+   font-size: 0.825rem;
+   color: #FF6600
+}
+label {
+    margin: 5px 0;
+}
+@media screen and (max-width: 768px) {
+    div.grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div.row {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    select {
+        margin: 5px 0;
+    }
+
+    input[type=date]::before {
+        top: 11px;
+    }
 }

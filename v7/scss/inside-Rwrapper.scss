@@ -1,7 +1,2 @@
 @use "global.scss" as g;
 
-.record-wrapper h1 {
-    font-size: 2em;
-    color: g.$primary;
-    font-weight: map-get(g.$font-weight, "bold");
-}
