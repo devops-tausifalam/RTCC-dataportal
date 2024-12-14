@@ -1,0 +1,89 @@
+@use "global.scss" as g; 
+.consentModal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    box-sizing: border-box;
+    padding: 20px;
+    width: min(400px, 90%);
+    background-color: #ffffff; /* White background */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+    color: #333333; /* Dark grey text */
+    overflow: hidden;
+  }
+  
+  .consentModal .flex-down {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .consentModal .flex-down input[type="checkbox"] {
+    accent-color: #0077cc; /* Blue checkbox accent */
+    transform: scale(1.2);
+  }
+  
+  .consentModal .flex-up {
+    margin-bottom: 15px;
+    overflow-x: scroll;
+  }
+  
+  .consentModal table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px auto;
+  }
+  
+  .consentModal th,
+  .consentModal td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .consentModal th {
+    background-color: #0077cc; /* Blue header */
+    color: #ffffff; /* White text for header */
+    font-weight: bold;
+  }
+  
+  .consentModal tr:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Light grey hover */
+    overflow-x: scroll;
+  }
+  
+  .consentModal button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .consentModal button:first-of-type {
+    background-color: #0077cc; /* Blue primary button */
+    color: #ffffff; /* White text */
+  }
+  
+  .consentModal button:first-of-type:hover {
+    background-color: #005fa3; /* Darker blue on hover */
+  }
+  
+  .consentModal button:last-of-type {
+    background-color: rgba(0, 0, 0, 0.05); /* Light grey button */
+    color: #333333; /* Dark grey text */
+  }
+  
+  .consentModal button:last-of-type:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Darker grey on hover */
+  }
+  
