@@ -151,7 +151,7 @@ input[type=date]::before {
 }
 
 h4 {
-  font-size: 0.625em; /* Further reduced font size */
+  font-size: 0.8rem; /* Further reduced font size */
   color: #E85C0D;
 }
 
