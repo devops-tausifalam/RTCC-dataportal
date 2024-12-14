@@ -1,255 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>v7 Service Record Form</title>
-    <meta name="author" content="Tausif Alam">
-    <link rel="stylesheet" href="css/bundle.css">
+    <meta name="author" content="Tausif Alam" />
+    <link rel="stylesheet" href="css/bundle.css" />
     <!-- font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <div class="outer-wrapper">
-        <div class="content-wrapper">
-            <div class="form-wrapper">
-                <!-- markup for #serviceForm -->
-                 <form id="serviceForm">
-                    <!-- powered by appScript and webScraping -->
-                     <h3>Machine Information</h3>
-                     <div class="row">
-                        <input type="date" name="date" id="dateService" required>
-                        <select id="plateCoNo" name="plateCoNo" required>
-                            <option value="">Plate/CoNo</option>
-                            <!-- Code options will be populated dynamically -->
-                        </select>
-                     </div>
-                     <h3>Select service Type</h3>
-                     <div class="grid">
-                        <section class="engineService">
-                            <h4>Engine Service</h4>
-                            <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="oilFilter"
-                                  name="serviceTypes"
-                                  value="OIL FILTER"
-                                />
-                                <label for="oilFilter">
-                                  <span class="arabic-text">فلتر زيت</span>
-                                  <span class="english-text">OIL FILTER</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="fuelFilter"
-                                  name="serviceTypes"
-                                  value="FUEL FILTER"
-                                />
-                                <label for="fuelFilter">
-                                  <span class="arabic-text">فلتر ديزل</span>
-                                  <span class="english-text">FUEL FILTER</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="waterSep"
-                                  name="serviceTypes"
-                                  value="WATER SEP"
-                                />
-                                <label for="waterSep">
-                                  <span class="arabic-text">فلتر سيبر يتر</span>
-                                  <span class="english-text">WATER SEP</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="engineOil"
-                                  name="serviceTypes"
-                                  value="ENGINE OIL"
-                                />
-                                <label for="engineOil">
-                                  <span class="arabic-text">زيت محرك</span>
-                                  <span class="english-text">ENGINE OIL</span>
-                                </label>
-                              </div>                              
-                        </section>
-                        <section class="hydService">
-                            <h4>Hydraulic Service</h4>
-                            <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="returnFilter"
-                                  name="serviceTypes"
-                                  value="RETURN FILTER"
-                                />
-                                <label for="returnFilter">
-                                  <span class="arabic-text">فلتر هيدروليك</span>
-                                  <span class="english-text">RETURN FILTER</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="strainer"
-                                  name="serviceTypes"
-                                  value="STRAINER"
-                                />
-                                <label for="strainer">
-                                  <span class="arabic-text">فلتر هيدروليك</span>
-                                  <span class="english-text">STRAINER</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="drainFilter"
-                                  name="serviceTypes"
-                                  value="DRAIN FILTER"
-                                />
-                                <label for="drainFilter">
-                                  <span class="arabic-text">فلتر هيدروليك</span>
-                                  <span class="english-text">DRAIN FILTER</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="lineFilter"
-                                  name="serviceTypes"
-                                  value="LINE FILTER"
-                                />
-                                <label for="lineFilter">
-                                  <span class="arabic-text">فلتر هيدروليك</span>
-                                  <span class="english-text">LINE FILTER</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="hydOil"
-                                  name="serviceTypes"
-                                  value="HYD.OIL"
-                                />
-                                <label for="hydOil">
-                                  <span class="arabic-text">زيت هيدروليك</span>
-                                  <span class="english-text">HYD.OIL</span>
-                                </label>
-                              </div>                              
-                        </section>
-                        <section class="transService">
-                            <h4>Transmission Service</h4>
-                            <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="transmissionOil"
-                                  name="serviceTypes"
-                                  value="TRANSMISSION OIL"
-                                />
-                                <label for="transmissionOil">
-                                  <span class="arabic-text">زيت جير</span>
-                                  <span class="english-text">TRANSMISSION OIL</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="transmissionFilter"
-                                  name="serviceTypes"
-                                  value="TRANSMISSION FILTER"
-                                />
-                                <label for="transmissionFilter">
-                                  <span class="arabic-text">فلتر جير</span>
-                                  <span class="english-text">TRANSMISSION FILTER</span>
-                                </label>
-                              </div>                              
-                        </section>
-                        <section class="otherService">
-                            <h4>Other Service</h4>
-                            <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="finalDriveOil"
-                                  name="serviceTypes"
-                                  value="FINAL DRIVE OIL"
-                                />
-                                <label for="finalDriveOil">
-                                  <span class="arabic-text">زيت ديفرينس</span>
-                                  <span class="english-text">FINAL DRIVE OIL</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="swingMotorOil"
-                                  name="serviceTypes"
-                                  value="SWING MOTOR OIL"
-                                />
-                                <label for="swingMotorOil">
-                                  <span class="arabic-text">زيت دوران</span>
-                                  <span class="english-text">SWING MOTOR OIL</span>
-                                </label>
-                              </div>
-                              <div class="select-wrapper">
-                                <input
-                                  type="checkbox"
-                                  id="airFilter"
-                                  name="serviceTypes"
-                                  value="AIR FILTER"
-                                />
-                                <label for="airFilter">
-                                  <span class="arabic-text">فلتر هواء</span>
-                                  <span class="english-text">AIR FILTER</span>
-                                </label>
-                              </div>                              
-                        </section>
-                     </div>
-                     
-                     <label for="type">Type:</label>
-                     <input
-                       type="text"
-                       id="type"
-                       autocomplete="off"
-                       name="type"
-                       placeholder="readonly"
-                       required
-                       readonly
-                     />
-     
-                     <label for="site">Site:</label>
-                     <input
-                       type="text"
-                       id="site"
-                       name="site"
-                       autocomplete="off"
-                       placeholder="Enter site/location"
-                       required
-                     />
-     
-                     <label for="battery">Battery:</label>
-                     <input
-                       type="text"
-                       id="battery"
-                       autocomplete="off"
-                       name="battery"
-                       placeholder="Enter battery details"
-                     />
-                     <br/>
-                     <br/>
-                     <button type="submit">Submit</button>
-                 </form>
-            </div>
-            <div class="record-wrapper">
-                <div class="controls">
-                    
-                </div>
-            </div>
+      <div class="content-wrapper">
+        <div class="consentModal" id="consent">
+          <h5>Your Response</h5>
+          <div class="flex-up inputLog">
+            <!-- dynamic population here -->
+            <!--create a demo table here with 1 rows and 4 columns-->
+            <!-- Demo table -->
+            <table>
+              <thead>
+                <tr>
+                  <th>DATE</th>
+                  <th>MODEL</th>
+                  <th>CONO</th>
+                  <th>HOUR</th>
+                  <th>TYPE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2024-08-21</td>
+                  <td>JCB135HD</td>
+                  <td>SL133</td>
+                  <td>9584</td>
+                  <td>E.O+F</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="flex-down">
+            <input type="checkbox" name="acknowledge" id="acknowledge" />
+            I consent that the data provided is accurate and cross-checked. Please review and correct any mistakes before submitting.
+          </div>
+          <button>I consent!</button>
+          <button>Edit</button>
         </div>
+        <div class="form-wrapper">
+          <!-- markup for #serviceForm -->
+          <form id="serviceForm">
+            <!-- powered by appScript and webScraping -->
+            <h3>Machine Information</h3>
+            <div class="row">
+              <input type="date" name="date" id="dateService" required />
+              <select id="plateCoNo" name="plateCoNo" required>
+                <option value="">Plate/CoNo</option>
+                <option value="test">test</option>
+                <!-- Code options will be populated dynamically -->
+              </select>
+            </div>
+            <h3>Select service Type</h3>
+            <div class="grid">
+              <section class="engineService">
+                <h4>Engine Service</h4>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="oilFilter"
+                    name="serviceTypes"
+                    value="OIL FILTER"
+                  />
+                  <label for="oilFilter">
+                    <span class="arabic-text">فلتر زيت</span>
+                    <span class="english-text">OIL FILTER</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="fuelFilter"
+                    name="serviceTypes"
+                    value="FUEL FILTER"
+                  />
+                  <label for="fuelFilter">
+                    <span class="arabic-text">فلتر ديزل</span>
+                    <span class="english-text">FUEL FILTER</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="waterSep"
+                    name="serviceTypes"
+                    value="WATER SEP"
+                  />
+                  <label for="waterSep">
+                    <span class="arabic-text">فلتر سيبر يتر</span>
+                    <span class="english-text">WATER SEP</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="engineOil"
+                    name="serviceTypes"
+                    value="ENGINE OIL"
+                  />
+                  <label for="engineOil">
+                    <span class="arabic-text">زيت محرك</span>
+                    <span class="english-text">ENGINE OIL</span>
+                  </label>
+                </div>
+              </section>
+              <section class="hydService">
+                <h4>Hydraulic Service</h4>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="returnFilter"
+                    name="serviceTypes"
+                    value="RETURN FILTER"
+                  />
+                  <label for="returnFilter">
+                    <span class="arabic-text">فلتر هيدروليك</span>
+                    <span class="english-text">RETURN FILTER</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="strainer"
+                    name="serviceTypes"
+                    value="STRAINER"
+                  />
+                  <label for="strainer">
+                    <span class="arabic-text">فلتر هيدروليك</span>
+                    <span class="english-text">STRAINER</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="drainFilter"
+                    name="serviceTypes"
+                    value="DRAIN FILTER"
+                  />
+                  <label for="drainFilter">
+                    <span class="arabic-text">فلتر هيدروليك</span>
+                    <span class="english-text">DRAIN FILTER</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="lineFilter"
+                    name="serviceTypes"
+                    value="LINE FILTER"
+                  />
+                  <label for="lineFilter">
+                    <span class="arabic-text">فلتر هيدروليك</span>
+                    <span class="english-text">LINE FILTER</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="hydOil"
+                    name="serviceTypes"
+                    value="HYD.OIL"
+                  />
+                  <label for="hydOil">
+                    <span class="arabic-text">زيت هيدروليك</span>
+                    <span class="english-text">HYD.OIL</span>
+                  </label>
+                </div>
+              </section>
+              <section class="transService">
+                <h4>Transmission Service</h4>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="transmissionOil"
+                    name="serviceTypes"
+                    value="TRANSMISSION OIL"
+                  />
+                  <label for="transmissionOil">
+                    <span class="arabic-text">زيت جير</span>
+                    <span class="english-text">TRANSMISSION OIL</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="transmissionFilter"
+                    name="serviceTypes"
+                    value="TRANSMISSION FILTER"
+                  />
+                  <label for="transmissionFilter">
+                    <span class="arabic-text">فلتر جير</span>
+                    <span class="english-text">TRANSMISSION FILTER</span>
+                  </label>
+                </div>
+              </section>
+              <section class="otherService">
+                <h4>Other Service</h4>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="finalDriveOil"
+                    name="serviceTypes"
+                    value="FINAL DRIVE OIL"
+                  />
+                  <label for="finalDriveOil">
+                    <span class="arabic-text">زيت ديفرينس</span>
+                    <span class="english-text">FINAL DRIVE OIL</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="swingMotorOil"
+                    name="serviceTypes"
+                    value="SWING MOTOR OIL"
+                  />
+                  <label for="swingMotorOil">
+                    <span class="arabic-text">زيت دوران</span>
+                    <span class="english-text">SWING MOTOR OIL</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="airFilter"
+                    name="serviceTypes"
+                    value="AIR FILTER"
+                  />
+                  <label for="airFilter">
+                    <span class="arabic-text">فلتر هواء</span>
+                    <span class="english-text">AIR FILTER</span>
+                  </label>
+                </div>
+              </section>
+            </div>
+
+            <label for="type" class="input-labels">Type:</label>
+            <input
+              type="text"
+              id="type"
+              autocomplete="off"
+              name="type"
+              placeholder="readonly"
+              required
+              readonly
+            />
+
+            <label for="site" class="input-labels">Site:</label>
+            <input
+              type="text"
+              id="site"
+              name="site"
+              autocomplete="off"
+              placeholder="Enter site/location"
+              required
+            />
+
+            <label for="battery" class="input-labels">Battery:</label>
+            <input
+              type="text"
+              id="battery"
+              autocomplete="off"
+              name="battery"
+              placeholder="Enter battery details"
+            />
+            <br>
+            <button id="forwardtoModal">Submit</button>
+          </form>
+        </div>
+        <div class="record-wrapper">
+          <div class="controls"></div>
+        </div>
+      </div>
     </div>
-</body>
+
+        <!-- scripts -->
+        <script src="app.js"></script>
+  </body>
 </html>

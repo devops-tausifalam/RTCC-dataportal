@@ -11,6 +11,7 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow: hidden; /* Prevent overflow of body content */
 }
 
 .outer-wrapper {
@@ -19,13 +20,15 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .content-wrapper {
   display: flex;
   width: 100%;
   height: 100%;
+  flex-wrap: wrap; /* Allows wrapping for responsive behavior */
+  justify-content: space-between; /* To space out form and record sections */
 }
 
 .form-wrapper {
@@ -33,6 +36,7 @@ body {
   width: 60%;
   box-sizing: border-box;
   background: #ffffff;
+  flex-shrink: 1; /* Allow shrinking on small screens */
 }
 
 .record-wrapper {
@@ -41,15 +45,14 @@ body {
   background: #000000;
   background-blend-mode: multiply;
   box-sizing: border-box;
+  flex-shrink: 1; /* Allow shrinking on small screens */
+  overflow-y: scroll;
 }
 
 @media screen and (max-width: 768px) {
-  .content-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
   .form-wrapper {
     width: 100%;
+    margin-bottom: 20px; /* Adds spacing between form and record wrapper */
   }
   .record-wrapper {
     width: 100%;
@@ -59,19 +62,18 @@ form#serviceForm {
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: 10px auto;
+  margin: 0 auto; /* Further reduced margin */
 }
 
 form#serviceForm h3 {
-  margin: 10px 0;
-  padding: 5px;
-  font-size: 1.5rem;
+  margin: 3px 0; /* Further reduced margin */
+  font-size: 1rem; /* Further reduced font size */
 }
 
 div.grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 5px;
+  padding: 2px; /* Further reduced padding */
 }
 
 .engineService {
@@ -97,14 +99,14 @@ div.grid {
 div.row {
   display: flex;
   flex-direction: row;
-  gap: 5px;
+  gap: 2px; /* Further reduced gap */
 }
 
 input {
   outline: none;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+  padding: 6px; /* Further reduced padding */
+  border-radius: 3px; /* Further reduced border-radius */
+  border: 1px solid #ccc; /* Lighter border color */
 }
 
 input:focus {
@@ -112,21 +114,20 @@ input:focus {
 }
 
 #plateCoNo {
-  height: 40px;
-  padding: 10px;
-  border-radius: 5px;
+  height: 30px; /* Further reduced height */
+  padding: 6px; /* Further reduced padding */
+  border-radius: 3px; /* Further reduced border-radius */
   border: 1px solid #ddd;
-  /* Added border for consistency */
   background-color: #f9f9f9;
   width: 100%;
 }
 
 button {
-  padding: 10px;
-  border-radius: 5px;
+  padding: 6px; /* Further reduced padding */
+  border-radius: 3px; /* Further reduced border-radius */
   border: 1px solid #ddd;
   transition: all 0.3s ease-in-out;
-  background-color: #0D92F4;
+  background-color: #E85C0D;
   color: #ffffff;
   cursor: pointer;
 }
@@ -137,26 +138,30 @@ button:active {
 
 input[type=date] {
   position: relative;
-  padding: 10px 10px 10px 100px;
+  padding: 6px 6px 6px 80px; /* Further reduced padding */
 }
 
 input[type=date]::before {
   content: "Service Date:";
   position: absolute;
-  top: 11px;
+  top: 7px; /* Further reduced top position */
   left: 5px;
-  font-size: 0.9em;
+  font-size: 0.75em; /* Further reduced font size */
   color: #8a8a8a;
-  /* Change this to your desired label color */
 }
 
 h4 {
-  font-size: 0.825rem;
-  color: #FF6600;
+  font-size: 0.625em; /* Further reduced font size */
+  color: #E85C0D;
 }
 
-label {
-  margin: 5px 0;
+.input-labels {
+  margin: 3px 0; /* Further reduced margin */
+  font-size: 0.7rem;
+}
+
+label span.english-text, span.arabic-text {
+  font-size: 0.7rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -169,11 +174,98 @@ label {
     justify-content: center;
   }
   select {
-    margin: 5px 0;
+    margin: 3px 0; /* Further reduced margin */
   }
   input[type=date]::before {
-    top: 11px;
+    top: 7px; /* Adjusted for smaller screens */
   }
+}
+.consentModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  box-sizing: border-box;
+  padding: 20px;
+  width: min(400px, 90%);
+  background-color: #ffffff; /* White background */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  color: #333333; /* Dark grey text */
+  overflow: hidden;
+}
+
+.consentModal .flex-down {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.consentModal .flex-down input[type=checkbox] {
+  accent-color: #0077cc; /* Blue checkbox accent */
+  transform: scale(1.2);
+}
+
+.consentModal .flex-up {
+  margin-bottom: 15px;
+  overflow-x: scroll;
+}
+
+.consentModal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px auto;
+}
+
+.consentModal th,
+.consentModal td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.consentModal th {
+  background-color: #0077cc; /* Blue header */
+  color: #ffffff; /* White text for header */
+  font-weight: bold;
+}
+
+.consentModal tr:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Light grey hover */
+  overflow-x: scroll;
+}
+
+.consentModal button {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.consentModal button:first-of-type {
+  background-color: #0077cc; /* Blue primary button */
+  color: #ffffff; /* White text */
+}
+
+.consentModal button:first-of-type:hover {
+  background-color: #005fa3; /* Darker blue on hover */
+}
+
+.consentModal button:last-of-type {
+  background-color: rgba(0, 0, 0, 0.05); /* Light grey button */
+  color: #333333; /* Dark grey text */
+}
+
+.consentModal button:last-of-type:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Darker grey on hover */
 }
 
 /*# sourceMappingURL=bundle.css.map */

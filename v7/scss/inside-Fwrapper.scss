@@ -4,19 +4,18 @@ form#serviceForm {
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin: 10px auto;
+    margin: 0 auto;  /* Further reduced margin */
 }
 
 form#serviceForm h3 {
-    margin: 10px 0;
-    padding: 5px;
-    font-size: 1.5rem;
+    margin: 3px 0;  /* Further reduced margin */
+    font-size: 1rem;  /* Further reduced font size */
 }
 
 div.grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 5px;
+    padding: 2px;  /* Further reduced padding */
 }
 
 .engineService {
@@ -42,64 +41,68 @@ div.grid {
 div.row {
     display: flex;
     flex-direction: row;
-    gap: 5px;
+    gap: 2px;  /* Further reduced gap */
 }
 
 input {
     outline: none;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    padding: 6px;  /* Further reduced padding */
+    border-radius: 3px;  /* Further reduced border-radius */
+    border: 1px solid #ccc;  /* Lighter border color */
 }
 input:focus {
     border: 2px solid #0D92F4;
 }
 
 #plateCoNo {
-    height: 40px;
-    padding: 10px;
-    border-radius: 5px;
+    height: 30px;  /* Further reduced height */
+    padding: 6px;  /* Further reduced padding */
+    border-radius: 3px;  /* Further reduced border-radius */
     border: 1px solid #ddd;
-    /* Added border for consistency */
     background-color: #f9f9f9;
     width: 100%;
 }
 
 button {
-    padding: 10px;
-    border-radius: 5px;
+    padding: 6px;  /* Further reduced padding */
+    border-radius: 3px;  /* Further reduced border-radius */
     border: 1px solid #ddd;
     transition: all 0.3s ease-in-out;
-    background-color: #0D92F4;
+    background-color: #E85C0D;
     color: g.$primary;
     cursor: pointer;
 }
-button:active{
+button:active {
     background-color: #77CDFF;
 }
 
 input[type="date"] {
     position: relative;
-    padding: 10px 10px 10px 100px;
+    padding: 6px 6px 6px 80px;  /* Further reduced padding */
 }
 
 input[type="date"]::before {
     content: "Service Date:";
     position: absolute;
-    top: 11px;
+    top: 7px;  /* Further reduced top position */
     left: 5px;
-    font-size: 0.9em;
+    font-size: 0.75em;  /* Further reduced font size */
     color: g.$notes-text;
-    /* Change this to your desired label color */
 }
-// labels of service type
+
 h4 {
-   font-size: 0.825rem;
-   color: #FF6600
+   font-size: 0.625em;  /* Further reduced font size */
+   color: #E85C0D;
 }
-label {
-    margin: 5px 0;
+
+.input-labels {
+    margin: 3px 0;  /* Further reduced margin */
+    font-size: 0.7rem;
 }
+label span.english-text,span.arabic-text {
+    font-size: 0.7rem;
+}
+
 @media screen and (max-width: 768px) {
     div.grid {
         display: flex;
@@ -112,10 +115,10 @@ label {
     }
 
     select {
-        margin: 5px 0;
+        margin: 3px 0;  /* Further reduced margin */
     }
 
     input[type=date]::before {
-        top: 11px;
+        top: 7px;  /* Adjusted for smaller screens */
     }
 }
