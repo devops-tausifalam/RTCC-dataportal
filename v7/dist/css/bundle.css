@@ -62,36 +62,31 @@ form#serviceForm {
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin: 0 auto; /* Further reduced margin */
+  margin: 0 auto;
 }
-
-form#serviceForm h3 {
-  margin: 3px 0; /* Further reduced margin */
-  font-size: 1rem; /* Further reduced font size */
+form#serviceForm h2 {
+  margin: 3px 0;
 }
 
 div.grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 2px; /* Further reduced padding */
+  gap: 2px;
+  margin: auto 10px;
 }
-
-.engineService {
+div.grid .engineService {
   grid-column: 1;
   grid-row: 1;
 }
-
-.hydService {
+div.grid .hydService {
   grid-column: 2;
   grid-row: 1;
 }
-
-.transService {
+div.grid .transService {
   grid-column: 1;
   grid-row: 2;
 }
-
-.otherService {
+div.grid .otherService {
   grid-column: 2;
   grid-row: 2;
 }
@@ -99,68 +94,72 @@ div.grid {
 div.row {
   display: flex;
   flex-direction: row;
-  gap: 2px; /* Further reduced gap */
+  align-items: center;
+  gap: 10px;
 }
 
 input {
   outline: none;
-  padding: 6px; /* Further reduced padding */
-  border-radius: 3px; /* Further reduced border-radius */
-  border: 1px solid #ccc; /* Lighter border color */
+  padding: 6px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
 }
-
 input:focus {
   border: 2px solid #0D92F4;
 }
+input:not([type=checkbox]) {
+  margin: 10px 0;
+}
+
+input[type=date] {
+  position: relative;
+  padding: 6px 6px 6px 80px;
+  flex: 1;
+}
+
+input[type=date]::before {
+  content: "Service Date:";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+  font-size: 0.75em;
+  color: #8a8a8a;
+}
 
 #plateCoNo {
-  height: 30px; /* Further reduced height */
-  padding: 6px; /* Further reduced padding */
-  border-radius: 3px; /* Further reduced border-radius */
+  height: 36px;
+  padding: 6px;
+  border-radius: 3px;
   border: 1px solid #ddd;
   background-color: #f9f9f9;
-  width: 100%;
+  flex: 1;
 }
 
 button {
-  padding: 6px; /* Further reduced padding */
-  border-radius: 3px; /* Further reduced border-radius */
+  padding: 6px;
+  border-radius: 3px;
   border: 1px solid #ddd;
   transition: all 0.3s ease-in-out;
   background-color: #E85C0D;
   color: #ffffff;
   cursor: pointer;
 }
-
 button:active {
   background-color: #77CDFF;
 }
 
-input[type=date] {
-  position: relative;
-  padding: 6px 6px 6px 80px; /* Further reduced padding */
-}
-
-input[type=date]::before {
-  content: "Service Date:";
-  position: absolute;
-  top: 7px; /* Further reduced top position */
-  left: 5px;
-  font-size: 0.75em; /* Further reduced font size */
-  color: #8a8a8a;
-}
-
 h4 {
-  font-size: 0.8rem; /* Further reduced font size */
+  font-size: 0.8rem;
   color: #E85C0D;
 }
 
 .input-labels {
-  margin: 3px 0; /* Further reduced margin */
   font-size: 1rem;
 }
 
-label span.english-text, span.arabic-text {
+label span.english-text,
+span.arabic-text {
   font-size: 1rem;
 }
 
@@ -168,16 +167,19 @@ label span.english-text, span.arabic-text {
   div.grid {
     display: flex;
     flex-direction: column;
+    gap: 2px;
   }
   div.row {
     flex-direction: column;
-    justify-content: center;
-  }
-  select {
-    margin: 3px 0; /* Further reduced margin */
+    align-items: stretch;
   }
   input[type=date]::before {
-    top: 7px; /* Adjusted for smaller screens */
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  input[type=date],
+  #plateCoNo {
+    width: 100%;
   }
 }
 .consentModal {
@@ -189,7 +191,7 @@ label span.english-text, span.arabic-text {
   z-index: 1000;
   box-sizing: border-box;
   padding: 20px;
-  width: min(400px, 90%);
+  width: min(600px, 90%);
   background-color: #ffffff; /* White background */
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);

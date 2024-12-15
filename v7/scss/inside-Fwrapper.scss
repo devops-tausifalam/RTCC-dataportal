@@ -1,124 +1,144 @@
-@use "global.scss" as g; //global variables
+@use "global.scss" as g; // Global variables
 
+// Form Styles
 form#serviceForm {
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin: 0 auto;  /* Further reduced margin */
+    margin: 0 auto; // Center form horizontally
+
+    h2 {
+        margin: 3px 0;
+    }
 }
 
-form#serviceForm h3 {
-    margin: 3px 0;  /* Further reduced margin */
-    font-size: 1rem;  /* Further reduced font size */
-}
-
+// Grid Layout for Services
 div.grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 2px;  /* Further reduced padding */
+    gap: 2px; // Space between items
+    margin: auto 10px;
+
+    .engineService {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .hydService {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .transService {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .otherService {
+        grid-column: 2;
+        grid-row: 2;
+    }
 }
 
-.engineService {
-    grid-column: 1;
-    grid-row: 1;
-}
-
-.hydService {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.transService {
-    grid-column: 1;
-    grid-row: 2;
-}
-
-.otherService {
-    grid-column: 2;
-    grid-row: 2;
-}
-
+// Row Layout for Flexible Items
 div.row {
     display: flex;
     flex-direction: row;
-    gap: 2px;  /* Further reduced gap */
+    align-items: center; // Ensure vertical alignment
+    gap: 10px; // Space between items
 }
 
+// Input Styles
 input {
     outline: none;
-    padding: 6px;  /* Further reduced padding */
-    border-radius: 3px;  /* Further reduced border-radius */
-    border: 1px solid #ccc;  /* Lighter border color */
-}
-input:focus {
-    border: 2px solid #0D92F4;
-}
+    padding: 6px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
 
-#plateCoNo {
-    height: 30px;  /* Further reduced height */
-    padding: 6px;  /* Further reduced padding */
-    border-radius: 3px;  /* Further reduced border-radius */
-    border: 1px solid #ddd;
-    background-color: #f9f9f9;
-    width: 100%;
-}
+    &:focus {
+        border: 2px solid #0D92F4;
+    }
 
-button {
-    padding: 6px;  /* Further reduced padding */
-    border-radius: 3px;  /* Further reduced border-radius */
-    border: 1px solid #ddd;
-    transition: all 0.3s ease-in-out;
-    background-color: #E85C0D;
-    color: g.$primary;
-    cursor: pointer;
-}
-button:active {
-    background-color: #77CDFF;
+    &:not([type='checkbox']) {
+        margin: 10px 0; // Adjust vertical spacing
+    }
 }
 
 input[type="date"] {
     position: relative;
-    padding: 6px 6px 6px 80px;  /* Further reduced padding */
+    padding: 6px 6px 6px 80px;
+    flex: 1; // Allow input to take equal space
 }
 
 input[type="date"]::before {
     content: "Service Date:";
     position: absolute;
-    top: 7px;  /* Further reduced top position */
+    top: 50%; // Center vertically
+    transform: translateY(-50%);
     left: 5px;
-    font-size: 0.75em;  /* Further reduced font size */
+    font-size: 0.75em;
     color: g.$notes-text;
 }
 
+#plateCoNo {
+    height: 36px; // Match the height of the date input
+    padding: 6px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    flex: 1; // Allow input to take equal space
+}
+
+// Button Styles
+button {
+    padding: 6px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+    background-color: #E85C0D;
+    color: g.$primary;
+    cursor: pointer;
+
+    &:active {
+        background-color: #77CDFF;
+    }
+}
+
+// Text Styles
 h4 {
-   font-size: 0.8rem;  /* Further reduced font size */
-   color: #E85C0D;
+    font-size: 0.8rem;
+    color: #E85C0D;
 }
 
 .input-labels {
-    margin: 3px 0;  /* Further reduced margin */
-    font-size: 1rem;
-}
-label span.english-text,span.arabic-text {
     font-size: 1rem;
 }
 
+label span.english-text,
+span.arabic-text {
+    font-size: 1rem;
+}
+
+// Responsive Styles
 @media screen and (max-width: 768px) {
     div.grid {
         display: flex;
         flex-direction: column;
+        gap: 2px; // Adjust gap for stacked layout
     }
 
     div.row {
         flex-direction: column;
-        justify-content: center;
+        align-items: stretch; // Ensure full-width alignment
     }
 
-    select {
-        margin: 3px 0;  /* Further reduced margin */
+    input[type="date"]::before {
+        top: 50%; // Adjust for smaller screens
+        transform: translateY(-50%);
     }
 
-    input[type=date]::before {
-        top: 7px;  /* Adjusted for smaller screens */
+    input[type="date"],
+    #plateCoNo {
+        width: 100%; // Ensure full-width inputs
     }
 }
