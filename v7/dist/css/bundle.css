@@ -94,9 +94,8 @@ div.grid .otherService {
 }
 
 div.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   margin-top: 5px;
 }
@@ -130,6 +129,9 @@ input:focus {
 }
 input:not([type=checkbox]) {
   margin: 10px 0;
+}
+input#battery {
+  width: 95%;
 }
 
 input[type=date] {

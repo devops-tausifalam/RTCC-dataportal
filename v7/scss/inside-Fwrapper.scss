@@ -40,9 +40,11 @@ div.grid {
     }
 }
 div.grid-2{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px; // Space between items
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    // gap: 2px; // Space between items
+    display: flex;
+    flex-direction: column;
     width: 100%;
     margin-top: 5px;
     input {
@@ -78,6 +80,9 @@ input {
 
     &:not([type='checkbox']) {
         margin: 10px 0; // Adjust vertical spacing
+    }
+    &#battery{
+        width: 95%;
     }
 }
 
