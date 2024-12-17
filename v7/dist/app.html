@@ -314,13 +314,11 @@
               placeholder="Enter battery details"
             />
             <br />
-            <button id="forwardtoModal">Submit</button>
+            <button id="checkData">Submit</button>
           </form>
         </div>
         <div class="record-wrapper">
-          <h3>
-            Service Record
-          </h3>
+          <h3>Service Record</h3>
           <div class="controls">
             <!-- to get printable document of fetched data -->
           </div>
@@ -335,20 +333,45 @@
       //All functionality
 
       //Form validation and Modal submission
+      // take all the inputs of user check
+      let dateService = document.getElementById("dateService").value;
+      let plateCoNo = document.getElementById("plateCoNo").value;
+      let model = document.getElementById("model").value;
+      let hourKM = document.getElementById("hourKM").value;
+      let serviceType = document.getElementById("type").value;
+      let site = document.getElementById("site").value;
+      let battery = document.getElementById("battery").value;
 
-      let forwardtoModal = document.getElementById("forwardtoModal");
+      function valid() {
+        // validate the data and pass-on as JSON with true if everything validates
+      }
+      function onFailed() {
+        // return error message when form validation fails
+      }
+      function consent() {
+        // take consent for data accuracy from user and send it to backend and update the table
+      }
+      let checkData = document.getElementById("checkData");
       let iConsent = document.getElementById("consent");
-      forwardtoModal.addEventListener("click", (e) => {
+      checkData.addEventListener("click", (e) => {
         e.preventDefault();
-        // perform form validation before consent modal
-
+        // if (valid) {
+        //   consent(); // take consent and submit the data
+        // } else {
+        //   onFailed(); //show message on failing to validate
+        // }
         iConsent.style.display = "block";
       });
-
       // table-init
       new gridjs.Grid({
         // columns: ["Date", "Model", "CONO", "Hour", "Type"],
-        columns: [{name: "Date", width: "150px"},{name: "Model"}, {name: "CONO", width: "125px"}, {name:"Hour",width: "125px"}, {name: "Type", width: "125px"}],
+        columns: [
+          { name: "Date", width: "150px" },
+          { name: "Model" },
+          { name: "CONO", width: "125px" },
+          { name: "Hour", width: "125px" },
+          { name: "Type", width: "125px" },
+        ],
         data: [
           ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
           ["2024-08-21", "JCB035HD", "SL133", "9584", "E.O+F"],
