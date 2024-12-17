@@ -93,6 +93,25 @@ div.grid .otherService {
   grid-row: 2;
 }
 
+div.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  width: 100%;
+  margin-top: 5px;
+}
+div.grid-2 input {
+  width: 100%;
+}
+div.grid-2 label {
+  background-color: #E85C0D;
+  color: #000000;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
 div.row {
   display: flex;
   flex-direction: row;
@@ -167,6 +186,11 @@ span.arabic-text {
 
 @media screen and (max-width: 768px) {
   div.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  div.grid-2 {
     display: flex;
     flex-direction: column;
     gap: 2px;

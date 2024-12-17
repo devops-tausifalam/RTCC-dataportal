@@ -272,47 +272,57 @@
                 </div>
               </section>
             </div>
-
-            <label for="hourKM">Hour / K.M:</label>
-            <input
-              type="text"
-              id="hourKM"
-              autocomplete="off"
-              placeholder="write here"
-              name="hourKM"
-              required
-            />
-            <label for="type" class="input-labels">Type:</label>
-            <input
-              type="text"
-              id="type"
-              autocomplete="off"
-              name="type"
-              placeholder="readonly"
-              required
-              readonly
-            />
-
-            <label for="site" class="input-labels">Site:</label>
-            <input
-              type="text"
-              id="site"
-              name="site"
-              autocomplete="off"
-              placeholder="Enter site/location"
-              required
-            />
-
-            <label for="battery" class="input-labels"
-              >Battery: (Optional)</label
-            >
-            <input
-              type="text"
-              id="battery"
-              autocomplete="off"
-              name="battery"
-              placeholder="Enter battery details"
-            />
+            <div class="grid-2">
+              <div class="input-container">
+                <label for="hourKM">Hour / K.M:</label>
+                <br>
+                <input
+                  type="text"
+                  id="hourKM"
+                  autocomplete="off"
+                  placeholder="write here"
+                  name="hourKM"
+                  required
+                />
+              </div>
+              <div class="input-container">
+                <label for="type" class="input-labels">Type:</label>
+                <br>
+                <input
+                  type="text"
+                  id="type"
+                  autocomplete="off"
+                  name="type"
+                  placeholder="readonly"
+                  required
+                  readonly
+                />
+              </div>
+              <div class="input-container">
+                <label for="site" class="input-labels">Site:</label>
+                <br>
+                <input
+                  type="text"
+                  id="site"
+                  name="site"
+                  autocomplete="off"
+                  placeholder="Enter site/location"
+                  required
+                />
+              </div>
+              <div class="input-container">
+                <label for="battery" class="input-labels"
+                  >Battery: (Optional)</label
+                > <br>
+                <input
+                  type="text"
+                  id="battery"
+                  autocomplete="off"
+                  name="battery"
+                  placeholder="Enter battery details"
+                />
+              </div>
+            </div>
             <br />
             <button id="checkData">Submit</button>
           </form>
