@@ -20,15 +20,12 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  overflow: auto;
 }
 
 .content-wrapper {
   display: flex;
   width: 100%;
   height: 100%;
-  flex-wrap: wrap; /* Allows wrapping for responsive behavior */
-  justify-content: space-between; /* To space out form and record sections */
 }
 
 .form-wrapper {
@@ -37,6 +34,7 @@ body {
   box-sizing: border-box;
   background: #ffffff;
   flex-shrink: 1; /* Allow shrinking on small screens */
+  overflow-y: scroll;
 }
 
 .record-wrapper {
@@ -50,6 +48,10 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+  .content-wrapper {
+    display: block;
+    overflow: scroll;
+  }
   .form-wrapper {
     width: 100%;
     margin-bottom: 20px; /* Adds spacing between form and record wrapper */
@@ -182,6 +184,11 @@ span.arabic-text {
     width: 100%;
   }
 }
+.record-wrapper h3 {
+  color: #ffffff;
+  margin: auto 5px;
+}
+
 .consentModal {
   display: none;
   position: fixed;

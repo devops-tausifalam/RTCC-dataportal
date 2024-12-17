@@ -1,0 +1,23 @@
+{
+  "name": "service-record-form",
+  "version": "7.0.0",
+  "description": "A tool to save work progress on construcio  site",
+  "main": "index.js",
+  "scripts": {
+    "test": "runtest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devops-tausifalam/servicecord.git"
+  },
+  "keywords": [
+    "service",
+    "record"
+  ],
+  "author": "Tausif Alam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devops-tausifalam/servicecord/issues"
+  },
+  "homepage": "https://github.com/devops-tausifalam/servicecord#readme"
+}

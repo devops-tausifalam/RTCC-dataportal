@@ -13,6 +13,8 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <!-- data-tables -->
+    <link rel="stylesheet" href="css/mermaid.min.css" />
   </head>
   <body>
     <div class="outer-wrapper">
@@ -316,12 +318,73 @@
           </form>
         </div>
         <div class="record-wrapper">
-          <div class="controls"></div>
+          <h3>
+            Service Record
+          </h3>
+          <div class="controls">
+            <!-- to get printable document of fetched data -->
+          </div>
+          <div id="table-wrapper"></div>
         </div>
       </div>
     </div>
 
-    <!-- scripts -->
-    <script src="app.js"></script>
+    <!-- data-tables -->
+    <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
+    <script>
+      //All functionality
+
+      //Form validation and Modal submission
+
+      let forwardtoModal = document.getElementById("forwardtoModal");
+      let iConsent = document.getElementById("consent");
+      forwardtoModal.addEventListener("click", (e) => {
+        e.preventDefault();
+        // perform form validation before consent modal
+
+        iConsent.style.display = "block";
+      });
+
+      // table-init
+      new gridjs.Grid({
+        // columns: ["Date", "Model", "CONO", "Hour", "Type"],
+        columns: [{name: "Date", width: "150px"},{name: "Model"}, {name: "CONO", width: "125px"}, {name:"Hour",width: "125px"}, {name: "Type", width: "125px"}],
+        data: [
+          ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+          ["2024-08-21", "JCB035HD", "SL133", "9584", "E.O+F"],
+          ["2024-08-21", "JCB535HD", "SL133", "9584", "E.O+F"],
+          ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+          ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+          ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+        ],
+        search: true,
+        sort: true,
+        language: {
+          search: {
+            placeholder: "Find specific data...",
+          },
+        },
+        style: {
+          table: {
+            width: "100%",
+            "border-collapse": "collapse",
+            margin: "10px auto",
+          },
+          th: {
+            padding: "10px",
+            "text-align": "left",
+            "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
+            "background-color": "#FFB200",
+            color: "#ffffff",
+            "font-weight": "bold",
+          },
+          td: {
+            padding: "10px",
+            "text-align": "left",
+            "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
+          },
+        },
+      }).render(document.getElementById("table-wrapper"));
+    </script>
   </body>
 </html>
