@@ -133,6 +133,9 @@ input:not([type=checkbox]) {
 input#battery {
   width: 95%;
 }
+input#battery::placeholder {
+  font-weight: 600;
+}
 
 input[type=date] {
   position: relative;

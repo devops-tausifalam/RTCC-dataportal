@@ -84,6 +84,9 @@ input {
     &#battery{
         width: 95%;
     }
+    &#battery::placeholder{
+        font-weight: map-get($map: g.$font-weight, $key: "medium");
+    }
 }
 
 input[type="date"] {
