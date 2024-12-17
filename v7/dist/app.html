@@ -47,11 +47,9 @@
             </table>
           </div>
           <div class="flex-down">
-            <input type="checkbox" name="acknowledge" id="acknowledge" />
-            I consent that the data provided is accurate and cross-checked.
-            Please review and correct any mistakes before submitting.
+              Are you sure, want to submit?
           </div>
-          <button>I consent!</button>
+          <button>Submit</button>
           <button>Edit</button>
         </div>
         <div class="form-wrapper">
@@ -193,42 +191,6 @@
                   </label>
                 </div>
               </section>
-              <section class="transService">
-                <h4>Transmission Service</h4>
-                <div class="select-wrapper">
-                  <input
-                    type="checkbox"
-                    id="transmissionOil"
-                    name="serviceTypes"
-                    value="TRANSMISSION OIL"
-                  />
-                  <label for="transmissionOil">
-                    <span class="arabic-text">زيت جير</span>
-                    <span class="english-text">TRANSMISSION OIL</span>
-                  </label>
-                </div>
-                <div class="select-wrapper">
-                  <input
-                    type="checkbox"
-                    id="transmissionFilter"
-                    name="serviceTypes"
-                    value="TRANSMISSION FILTER"
-                  />
-                  <label for="transmissionFilter">
-                    <span class="arabic-text">فلتر جير</span>
-                    <span class="english-text">TRANSMISSION FILTER</span>
-                  </label>
-                </div>
-                <section class="battery">
-                  <input
-                  type="text"
-                  id="battery"
-                  autocomplete="off"
-                  name="battery"
-                  placeholder="Battery Details (Optional)"
-                />
-                </section>
-              </section>
               <section class="otherService">
                 <h4>Other Service</h4>
                 <div class="select-wrapper">
@@ -280,11 +242,47 @@
                   </label>
                 </div>
               </section>
+              <section class="transService">
+                <h4>Transmission Service</h4>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="transmissionOil"
+                    name="serviceTypes"
+                    value="TRANSMISSION OIL"
+                  />
+                  <label for="transmissionOil">
+                    <span class="arabic-text">زيت جير</span>
+                    <span class="english-text">TRANSMISSION OIL</span>
+                  </label>
+                </div>
+                <div class="select-wrapper">
+                  <input
+                    type="checkbox"
+                    id="transmissionFilter"
+                    name="serviceTypes"
+                    value="TRANSMISSION FILTER"
+                  />
+                  <label for="transmissionFilter">
+                    <span class="arabic-text">فلتر جير</span>
+                    <span class="english-text">TRANSMISSION FILTER</span>
+                  </label>
+                </div>
+                <section class="battery">
+                  <input
+                    type="text"
+                    id="battery"
+                    autocomplete="off"
+                    name="battery"
+                    placeholder="Battery Details (Optional)"
+                  />
+                </section>
+              </section>
             </div>
             <div class="grid-2">
               <div class="input-container">
                 <label for="hourKM">Hour / K.M:</label>
-                <br>
+                <br />
                 <input
                   type="text"
                   id="hourKM"
@@ -296,7 +294,7 @@
               </div>
               <div class="input-container">
                 <label for="type" class="input-labels">Type:</label>
-                <br>
+                <br />
                 <input
                   type="text"
                   id="type"
@@ -309,7 +307,7 @@
               </div>
               <div class="input-container">
                 <label for="site" class="input-labels">Site:</label>
-                <br>
+                <br />
                 <input
                   type="text"
                   id="site"
