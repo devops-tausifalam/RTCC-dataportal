@@ -11,7 +11,8 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* Prevent overflow of body content */
+  overflow: hidden;
+  /* Prevent overflow of body content */
 }
 
 .outer-wrapper {
@@ -33,7 +34,8 @@ body {
   width: 60%;
   box-sizing: border-box;
   background: #ffffff;
-  flex-shrink: 1; /* Allow shrinking on small screens */
+  flex-shrink: 1;
+  /* Allow shrinking on small screens */
   overflow-y: scroll;
 }
 
@@ -43,7 +45,8 @@ body {
   background: #000000;
   background-blend-mode: multiply;
   box-sizing: border-box;
-  flex-shrink: 1; /* Allow shrinking on small screens */
+  flex-shrink: 1;
+  /* Allow shrinking on small screens */
   overflow-y: scroll;
 }
 
@@ -54,10 +57,56 @@ body {
   }
   .form-wrapper {
     width: 100%;
-    margin-bottom: 20px; /* Adds spacing between form and record wrapper */
+    margin-bottom: 20px;
+    /* Adds spacing between form and record wrapper */
   }
   .record-wrapper {
     width: 100%;
+  }
+}
+@media print {
+  body {
+    display: block;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  body::after {
+    content: "RTCC"; /* Your watermark text */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 10rem;
+    color: rgba(0, 0, 0, 0.1); /* Semi-transparent color */
+    font-weight: bold;
+    z-index: 1;
+    pointer-events: none; /* Ensure it doesn't interfere with content */
+  }
+  /* Table wrappers and elements */
+  .gridjs-wrapper,
+  .table-wrapper {
+    background: transparent;
+  }
+  .gridjs-table {
+    border: 1px solid #000; /* Replace g.$secondary with a valid color */
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .gridjs-th,
+  .gridjs-td,
+  .gridjs-tr {
+    border: 1px solid black; /* Set border style for table, th, td, tr */
+    padding: 8px;
+    text-align: left;
+  }
+  /* Page layout */
+  @page {
+    margin: 10mm;
+  }
+  /* Hide print button */
+  .print-button {
+    display: none;
   }
 }
 form#serviceForm {
@@ -68,6 +117,10 @@ form#serviceForm {
 }
 form#serviceForm h2 {
   margin: 3px 0;
+}
+form#serviceForm h2 strong {
+  color: #FF2929;
+  font-size: 0.9rem;
 }
 
 div.grid {
@@ -85,11 +138,11 @@ div.grid .hydService {
   grid-row: 1;
 }
 div.grid .transService {
-  grid-column: 2;
+  grid-column: 1;
   grid-row: 2;
 }
 div.grid .otherService {
-  grid-column: 1;
+  grid-column: 2;
   grid-row: 2;
 }
 
@@ -135,6 +188,9 @@ input#battery {
 }
 input#battery::placeholder {
   font-weight: 600;
+}
+input.error {
+  border: 2px solid #FF2929;
 }
 
 input[type=date] {
@@ -216,6 +272,37 @@ span.arabic-text {
 .record-wrapper h2 {
   color: #ffffff;
   margin: auto 5px;
+}
+.record-wrapper .nav {
+  display: flex;
+  flex: 1 1 0;
+  width: 100%;
+}
+.record-wrapper .nav button {
+  outline: none;
+  border: 2px solid #ffaa00;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #ffffff;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+  grid-column: 2;
+}
+.record-wrapper .nav button:focus {
+  border-color: #ff8800;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+.record-wrapper .nav button:hover {
+  background-color: #ff8800;
+  border-color: #ff8800;
+}
+.record-wrapper .nav button:active {
+  background-color: rgb(229.5, 122.4, 0);
+  border-color: rgb(229.5, 122.4, 0);
+  transform: translateY(2px);
 }
 
 .consentModal {

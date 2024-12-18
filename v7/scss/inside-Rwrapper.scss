@@ -1,8 +1,55 @@
 @use "global.scss" as g;
+// Variables (for easy customization)
+$primary-color: #ffaa00; // A professional blue color
+$secondary-color: #ffffff; // Subtle grey for text
+$button-background: transparent;
+$button-hover-background: #ff8800; // Light grey for hover
+$button-border: #ffaa00;
+$button-border-hover: #ff8800;
+$border-radius: 5px;
 
 .record-wrapper {
-    h2{
+    h2 {
         color: g.$primary;
         margin: auto 5px;
+    }
+
+    .nav {
+        display: flex;
+        flex:  1 1 0;
+        width: 100%;
+        // Button Styling
+        button {
+            outline: none;
+            border: 2px solid $button-border;
+            padding: 8px 16px;
+            border-radius: $border-radius;
+            font-weight: 600;
+            color: $secondary-color;
+            background: $button-background;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+            grid-column: 2;
+            // Focus state (optional)
+            &:focus {
+                border-color: $button-border-hover;
+                box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+            }
+
+            // Hover state
+            &:hover {
+                background-color: $button-hover-background;
+                border-color: $button-border-hover;
+            }
+
+            // Active state (when clicked)
+            &:active {
+                background-color: darken($button-hover-background, 5%);
+                border-color: darken($button-border-hover, 5%);
+                transform: translateY(2px); // Adds a pressed effect
+            }
+
+        }
     }
 }

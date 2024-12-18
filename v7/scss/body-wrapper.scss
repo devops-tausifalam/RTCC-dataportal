@@ -13,7 +13,8 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    overflow: hidden; /* Prevent overflow of body content */
+    overflow: hidden;
+    /* Prevent overflow of body content */
 }
 
 .outer-wrapper {
@@ -35,7 +36,8 @@ body {
     width: 60%;
     box-sizing: border-box;
     background: g.$primary;
-    flex-shrink: 1; /* Allow shrinking on small screens */
+    flex-shrink: 1;
+    /* Allow shrinking on small screens */
     overflow-y: scroll;
 }
 
@@ -45,7 +47,8 @@ body {
     background: g.$secondary;
     background-blend-mode: multiply;
     box-sizing: border-box;
-    flex-shrink: 1; /* Allow shrinking on small screens */
+    flex-shrink: 1;
+    /* Allow shrinking on small screens */
     overflow-y: scroll;
 }
 
@@ -55,12 +58,66 @@ body {
         display: block;
         overflow: scroll;
     }
+
     .form-wrapper {
         width: 100%;
-        margin-bottom: 20px; /* Adds spacing between form and record wrapper */
+        margin-bottom: 20px;
+        /* Adds spacing between form and record wrapper */
     }
 
     .record-wrapper {
         width: 100%;
+    }
+}
+
+@media print {
+    body {
+        display: block;
+        padding: 0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body::after {
+        content: "RTCC"; /* Your watermark text */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        font-size: 10rem;
+        color: rgba(0, 0, 0, 0.1); /* Semi-transparent color */
+        font-weight: bold;
+        z-index: 1; 
+        pointer-events: none; /* Ensure it doesn't interfere with content */
+    }
+
+    /* Table wrappers and elements */
+    .gridjs-wrapper,
+    .table-wrapper {
+        background: transparent;
+    }
+
+    .gridjs-table {
+        border: 1px solid #000; /* Replace g.$secondary with a valid color */
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .gridjs-th,
+    .gridjs-td,
+    .gridjs-tr {
+        border: 1px solid black; /* Set border style for table, th, td, tr */
+        padding: 8px;
+        text-align: left;
+    }
+
+    /* Page layout */
+    @page {
+        margin: 10mm;
+    }
+
+    /* Hide print button */
+    .print-button {
+        display: none;
     }
 }
