@@ -79,26 +79,29 @@ body {
     }
 
     body::after {
-        content: "RTCC"; /* Your watermark text */
+        content: "RTCC";
+        /* Your watermark text */
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
         font-size: 10rem;
-        color: rgba(0, 0, 0, 0.1); /* Semi-transparent color */
+        color: rgba(0, 0, 0, 0.1);
+        /* Semi-transparent color */
         font-weight: bold;
-        z-index: 1; 
-        pointer-events: none; /* Ensure it doesn't interfere with content */
+        z-index: 1;
+        pointer-events: none;
+        /* Ensure it doesn't interfere with content */
     }
 
     /* Table wrappers and elements */
-    .gridjs-wrapper,
     .table-wrapper {
         background: transparent;
     }
 
     .gridjs-table {
-        border: 1px solid #000; /* Replace g.$secondary with a valid color */
+        border: 1px solid #000;
+        /* Replace g.$secondary with a valid color */
         width: 100%;
         border-collapse: collapse;
     }
@@ -106,7 +109,8 @@ body {
     .gridjs-th,
     .gridjs-td,
     .gridjs-tr {
-        border: 1px solid black; /* Set border style for table, th, td, tr */
+        border: 1px solid black;
+        /* Set border style for table, th, td, tr */
         padding: 8px;
         text-align: left;
     }

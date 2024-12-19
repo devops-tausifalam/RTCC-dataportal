@@ -46,17 +46,43 @@
               </tbody>
             </table>
           </div>
-          <div class="flex-down">
-              Are you sure, want to submit?
-          </div>
+          <div class="flex-down">Are you sure, want to submit?</div>
           <button>Submit</button>
-          <button>Edit</button>
+          <button onclick="hideConsent()">Edit</button>
+        </div>
+        <div class="dataAccessModal" id="DAM">
+          <div class="left-access">
+            <h3>GET: Filtered Data <button id="close-modal" onclick="closeDAM()" aria-label="for-small-screens">&#x2715;</button></h3>
+            <p class="pcNotes">
+              Note: To filter data by Model, Co. No., Site, or Service Type, simply enter the desired criteria in the search bar.
+            </p>
+            <p class="mbNotes">
+              Note: Use Desktop/PC to filter data other than Date criterion.
+            </p>
+            <!-- data-range -->
+            <label for="dateRangeStart" id="startDateLabel">Start Date:</label>
+            <input type="date" id="dateRangeStart" />
+            <label for="dateRangeEnd" id="endDateLabel">End Date:</label>
+            <input type="date" id="dateRangeEnd" />
+
+            <section class="btngroup">
+              <button>Correction</button>
+              <button onclick="printDAM()">Print</button>
+              <button>Get PDF</button>
+            </section>
+          </div>
+          <div class="right-access">
+            <div id="DAM_table"></div>
+          </div>
         </div>
         <div class="form-wrapper">
           <!-- markup for #serviceForm -->
           <form id="serviceForm">
             <!-- powered by appScript and webScraping -->
-            <h2>Machine Information <br/> <strong id="formError"></strong></h2>
+            <h2>
+              Machine Information <br />
+              <strong id="formError"></strong>
+            </h2>
             <div class="row">
               <input type="date" name="date" id="dateService" required />
               <select id="plateCoNo" name="plateCoNo" required>
@@ -338,7 +364,7 @@
           <div class="nav">
             <h2>Service Record</h2>
             <button onclick="printTable()">Print this</button>
-            <button>Other Data</button>
+            <button onclick="openDAM()">Data filter & access</button>
           </div>
           <div id="table-wrapper"></div>
         </div>
@@ -347,6 +373,6 @@
 
     <!-- data-tables -->
     <script src="https://cdn.jsdelivr.net/npm/gridjs/dist/gridjs.umd.js"></script>
-   <script src="app.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>

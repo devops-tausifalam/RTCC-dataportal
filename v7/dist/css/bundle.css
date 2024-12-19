@@ -72,31 +72,35 @@ body {
     font-family: Arial, sans-serif;
   }
   body::after {
-    content: "RTCC"; /* Your watermark text */
+    content: "RTCC";
+    /* Your watermark text */
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
     font-size: 10rem;
-    color: rgba(0, 0, 0, 0.1); /* Semi-transparent color */
+    color: rgba(0, 0, 0, 0.1);
+    /* Semi-transparent color */
     font-weight: bold;
     z-index: 1;
-    pointer-events: none; /* Ensure it doesn't interfere with content */
+    pointer-events: none;
+    /* Ensure it doesn't interfere with content */
   }
   /* Table wrappers and elements */
-  .gridjs-wrapper,
   .table-wrapper {
     background: transparent;
   }
   .gridjs-table {
-    border: 1px solid #000; /* Replace g.$secondary with a valid color */
+    border: 1px solid #000;
+    /* Replace g.$secondary with a valid color */
     width: 100%;
     border-collapse: collapse;
   }
   .gridjs-th,
   .gridjs-td,
   .gridjs-tr {
-    border: 1px solid black; /* Set border style for table, th, td, tr */
+    border: 1px solid black;
+    /* Set border style for table, th, td, tr */
     padding: 8px;
     text-align: left;
   }
@@ -315,11 +319,13 @@ span.arabic-text {
   box-sizing: border-box;
   padding: 20px;
   width: min(600px, 90%);
-  background-color: #ffffff; /* White background */
+  background-color: #ffffff;
+  /* White background */
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   font-family: Arial, sans-serif;
-  color: #333333; /* Dark grey text */
+  color: #333333;
+  /* Dark grey text */
   overflow: hidden;
 }
 
@@ -331,7 +337,8 @@ span.arabic-text {
 }
 
 .consentModal .flex-down input[type=checkbox] {
-  accent-color: #0077cc; /* Blue checkbox accent */
+  accent-color: #0077cc;
+  /* Blue checkbox accent */
   transform: scale(1.2);
 }
 
@@ -354,13 +361,16 @@ span.arabic-text {
 }
 
 .consentModal th {
-  background-color: #0077cc; /* Blue header */
-  color: #ffffff; /* White text for header */
+  background-color: #0077cc;
+  /* Blue header */
+  color: #ffffff;
+  /* White text for header */
   font-weight: bold;
 }
 
 .consentModal tr:hover {
-  background-color: rgba(0, 0, 0, 0.05); /* Light grey hover */
+  background-color: rgba(0, 0, 0, 0.05);
+  /* Light grey hover */
   overflow-x: scroll;
 }
 
@@ -376,21 +386,246 @@ span.arabic-text {
 }
 
 .consentModal button:first-of-type {
-  background-color: #0077cc; /* Blue primary button */
-  color: #ffffff; /* White text */
+  background-color: #0077cc;
+  /* Blue primary button */
+  color: #ffffff;
+  /* White text */
 }
 
 .consentModal button:first-of-type:hover {
-  background-color: #005fa3; /* Darker blue on hover */
+  background-color: #005fa3;
+  /* Darker blue on hover */
 }
 
 .consentModal button:last-of-type {
-  background-color: rgba(0, 0, 0, 0.05); /* Light grey button */
-  color: #333333; /* Dark grey text */
+  background-color: rgba(0, 0, 0, 0.05);
+  /* Light grey button */
+  color: #333333;
+  /* Dark grey text */
 }
 
 .consentModal button:last-of-type:hover {
-  background-color: rgba(0, 0, 0, 0.1); /* Darker grey on hover */
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Darker grey on hover */
+}
+
+.dataAccessModal {
+  display: none;
+  /* flex */
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  width: 800px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+div.left-access {
+  width: 40%;
+}
+
+div.right-access {
+  width: 60%;
+  padding: 0;
+  margin: 0;
+}
+div.right-access .gridjs-wrapper {
+  box-shadow: none;
+}
+
+/* Modal header */
+.dataAccessModal h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.dataAccessModal h3 button {
+  opacity: 0;
+  outline: none;
+  border: none;
+  color: #333;
+  background: none;
+  cursor: pointer;
+}
+
+/* Modal description */
+.dataAccessModal p {
+  color: #555;
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
+
+.mbNotes {
+  display: none;
+}
+
+.pcNotes {
+  display: block;
+}
+
+/* Date input styles */
+.dataAccessModal label {
+  display: block;
+  font-size: 0.9em;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.dataAccessModal input[type=date] {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  appearance: none;
+  padding-left: 10px;
+}
+
+/* Target the input element */
+.dataAccessModal input[type=date] {
+  position: relative;
+  padding-left: 10px;
+  /* Adjust padding for space */
+}
+
+/* Hide the placeholder when the input is focused */
+.dataAccessModal input[type=date]:focus::placeholder {
+  color: transparent;
+}
+
+/* Ensure the placeholder disappears when the input is not empty */
+.dataAccessModal input[type=date]:not(:placeholder-shown) {
+  padding-left: 10px;
+  /* Adjust padding once input has value */
+}
+
+/* Use content to add a pseudo-placeholder (this works around overlap) */
+.dataAccessModal input[type=date]:empty::before {
+  content: attr(placeholder);
+  /* Insert placeholder text */
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: gray;
+  /* Placeholder color */
+  pointer-events: none;
+  /* Make sure it doesn't block interaction */
+}
+
+.dataAccessModal input[type=date]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button group styles */
+.dataAccessModal .btngroup {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dataAccessModal .btngroup button {
+  flex: 1;
+  margin: 5px;
+  padding: 10px 5px;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+}
+
+.dataAccessModal .btngroup button:active {
+  background-color: #579ce7;
+}
+
+/* Remove backdrop filter */
+.dataAccessModal::before {
+  display: none;
+}
+
+.dataAccessModal #DAM_table {
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .dataAccessModal {
+    width: 90%;
+    /* Adjust width to fit smaller screens */
+    padding: 15px;
+    /* Reduce padding for smaller screens */
+    box-shadow: none;
+    /* Remove box-shadow for mobile devices */
+  }
+  div.left-access {
+    width: 100%;
+    /* Stack the columns vertically */
+    padding: 0;
+  }
+  div.right-access {
+    display: none;
+  }
+  /* Modal header */
+  .dataAccessModal h3 {
+    font-size: 1.2em;
+    /* Reduce font size */
+  }
+  .dataAccessModal h3 button {
+    opacity: 1;
+  }
+  /* Modal description */
+  .dataAccessModal p {
+    font-size: 0.8em;
+    /* Adjust font size for better readability */
+  }
+  /* Date input styles */
+  .dataAccessModal input[type=date] {
+    width: 100%;
+    /* Ensure input takes full width */
+    padding: 12px;
+    /* Increase padding for ease of interaction */
+    font-size: 1em;
+    /* Slightly larger font size for easier readability */
+  }
+  .dataAccessModal .btngroup {
+    flex-direction: column;
+    /* Stack buttons vertically */
+    width: 100%;
+  }
+  .dataAccessModal .btngroup button {
+    margin: 5px 0;
+    /* Adjust margin for vertical button layout */
+    padding: 12px;
+    /* Increase padding for easier tapping */
+    font-size: 1rem;
+    /* Larger font size for mobile readability */
+  }
+  .dataAccessModal .btngroup button:nth-child(2) {
+    display: none;
+  }
+  .dataAccessModal .btngroup button:nth-child(1) {
+    display: none;
+  }
+  .mbNotes {
+    display: block;
+  }
+  .pcNotes {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=bundle.css.map */
