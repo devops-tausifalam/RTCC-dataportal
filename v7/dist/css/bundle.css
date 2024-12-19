@@ -65,6 +65,11 @@ body {
   }
 }
 @media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    /* Ensures color accuracy */
+    print-color-adjust: exact;
+  }
   body {
     display: block;
     padding: 0;
@@ -494,6 +499,52 @@ div.right-access .gridjs-wrapper {
   padding-left: 10px;
 }
 
+#dateMethod {
+  display: block;
+}
+
+#otherMethod {
+  display: none;
+}
+
+div#otherMethod input#searchInput {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  appearance: none;
+  padding-left: 10px;
+}
+
+div#otherMethod input#searchInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.dataAccessModal select {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  appearance: none;
+  padding-left: 10px;
+}
+
+.dataAccessModal select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
 /* Target the input element */
 .dataAccessModal input[type=date] {
   position: relative;
@@ -620,11 +671,11 @@ div.right-access .gridjs-wrapper {
   .dataAccessModal .btngroup button:nth-child(1) {
     display: none;
   }
-  .mbNotes {
-    display: block;
+  .dataAccessModal select {
+    width: 100%;
   }
-  .pcNotes {
-    display: none;
+  div#otherMethod input#searchInput {
+    width: 100%;
   }
 }
 

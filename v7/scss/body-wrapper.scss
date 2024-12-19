@@ -71,6 +71,12 @@ body {
 }
 
 @media print {
+    * {
+        -webkit-print-color-adjust: exact;
+        /* Ensures color accuracy */
+        print-color-adjust: exact;
+    }
+
     body {
         display: block;
         padding: 0;

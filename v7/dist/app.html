@@ -52,21 +52,36 @@
         </div>
         <div class="dataAccessModal" id="DAM">
           <div class="left-access">
-            <h3>GET: Filtered Data <button id="close-modal" onclick="closeDAM()" aria-label="for-small-screens">&#x2715;</button></h3>
-            <p class="pcNotes">
-              Note: To filter data by Model, Co. No., Site, or Service Type, simply enter the desired criteria in the search bar.
-            </p>
-            <p class="mbNotes">
-              Note: Use Desktop/PC to filter data other than Date criterion.
-            </p>
+            <h3>
+              Search Data By:
+              <button
+                id="close-modal"
+                onclick="closeDAM()"
+                aria-label="for-small-screens"
+              >
+                &#x2715;
+              </button>
+            </h3>
+            <label for="searchBy">Select Method:</label>
+            <select id="searchBy">
+              <option value="date_range">Date Range</option>
+              <option value="model">Model</option>
+              <option value="co_no">Co.No</option>
+              <option value="site">Site</option>
+              <option value="service_type">Service Type</option>
+            </select>
             <!-- data-range -->
-            <label for="dateRangeStart" id="startDateLabel">Start Date:</label>
-            <input type="date" id="dateRangeStart" />
-            <label for="dateRangeEnd" id="endDateLabel">End Date:</label>
-            <input type="date" id="dateRangeEnd" />
-
+             <div id="dateMethod">
+              <label for="dateRangeStart" id="startDateLabel">Start Date:</label>
+              <input type="date" id="dateRangeStart" />
+              <label for="dateRangeEnd" id="endDateLabel">End Date:</label>
+              <input type="date" id="dateRangeEnd" />
+             </div>
+             <div id="otherMethod">
+              <input type="text" id="searchInput" autocomplete="off" placeholder="Type to search..."/>
+             </div>
             <section class="btngroup">
-              <button>Correction</button>
+              <button>Edit</button>
               <button onclick="printDAM()">Print</button>
               <button>Get PDF</button>
             </section>
@@ -364,7 +379,7 @@
           <div class="nav">
             <h2>Service Record</h2>
             <button onclick="printTable()">Print this</button>
-            <button onclick="openDAM()">Data filter & access</button>
+            <button onclick="openDAM()">Search Data</button>
           </div>
           <div id="table-wrapper"></div>
         </div>

@@ -1,4 +1,6 @@
-//All functionality excluding table
+window.onload = () => {
+  mainTbl(); //initailize the table
+};
 
 //Form validation and Modal submission
 
@@ -177,56 +179,57 @@ function hideConsent() {
   iConsent.style.display = "none";
 }
 // table-init
-new gridjs.Grid({
-  // columns: ["Date", "Model", "CONO", "Hour", "Type"],
-  columns: [
-    { name: "Date", width: "150px" },
-    { name: "Model" },
-    { name: "CONO", width: "125px" },
-    { name: "Hour", width: "125px" },
-    { name: "Type", width: "125px" },
-  ],
-  data: [
-    ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-    ["2024-08-21", "JCB035HD", "SL133", "9584", "E.O+F"],
-    ["2024-08-21", "JCB535HD", "SL133", "9584", "E.O+F"],
-    ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-    ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-    ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-    ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-    ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-  ],
-  search: true,
-  sort: true,
-  fixedHeader: true,
-  language: {
-    search: {
-      placeholder: "Find specific data...",
+function mainTbl() {
+  return new gridjs.Grid({
+    // columns: ["Date", "Model", "CONO", "Hour", "Type"],
+    columns: [
+      { name: "Date", width: "150px" },
+      { name: "Model" },
+      { name: "CONO", width: "125px" },
+      { name: "Hour", width: "125px" },
+      { name: "Type", width: "125px" },
+    ],
+    data: [
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB035HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB535HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+    ],
+    search: true,
+    sort: true,
+    fixedHeader: true,
+    language: {
+      search: {
+        placeholder: "Find specific data...",
+      },
     },
-  },
-  style: {
-    table: {
-      width: "100%",
-      "border-collapse": "collapse",
-      margin: "10px auto",
-      "table-layout": "fixed",
+    style: {
+      table: {
+        width: "100%",
+        "border-collapse": "collapse",
+        margin: "10px auto",
+        "table-layout": "fixed",
+      },
+      th: {
+        padding: "10px",
+        "text-align": "left",
+        "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
+        "background-color": "#FFB200",
+        color: "#ffffff",
+        "font-weight": "bold",
+      },
+      td: {
+        padding: "10px",
+        "text-align": "left",
+        "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
+      },
     },
-    th: {
-      padding: "10px",
-      "text-align": "left",
-      "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
-      "background-color": "#FFB200",
-      color: "#ffffff",
-      "font-weight": "bold",
-    },
-    td: {
-      padding: "10px",
-      "text-align": "left",
-      "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
-    }
-  }
-}).render(document.getElementById("table-wrapper"));
-
+  }).render(document.getElementById("table-wrapper"));
+}
 // Print Functionality
 // Print function to print the grid
 function printTable() {
@@ -236,14 +239,18 @@ function printTable() {
 
   // Extract all dates from the Date column
   const dates = Array.from(tableRows)
-      .map(row => row.querySelector("td:nth-child(1)")?.textContent.trim())
-      .filter(date => date && !isNaN(new Date(date))); // Ensure valid dates
+    .map((row) => row.querySelector("td:nth-child(1)")?.textContent.trim())
+    .filter((date) => date && !isNaN(new Date(date))); // Ensure valid dates
 
   // Sort the dates to find the earliest and latest
-  const sortedDates = dates.map(date => new Date(date)).sort((a, b) => a - b);
+  const sortedDates = dates.map((date) => new Date(date)).sort((a, b) => a - b);
 
-  const firstDate = sortedDates.length > 0 ? sortedDates[0].toISOString().split('T')[0] : "N/A";
-  const lastDate = sortedDates.length > 0 ? sortedDates[sortedDates.length - 1].toISOString().split('T')[0] : "N/A";
+  const firstDate =
+    sortedDates.length > 0 ? sortedDates[0].toISOString().split("T")[0] : "N/A";
+  const lastDate =
+    sortedDates.length > 0
+      ? sortedDates[sortedDates.length - 1].toISOString().split("T")[0]
+      : "N/A";
 
   const dateRangeBox = `
     <div style="text-align: center; margin-bottom: 20px; border: 1px solid #000; padding: 10px;">
@@ -251,15 +258,81 @@ function printTable() {
       <p><strong>Date Range:</strong> ${firstDate} - ${lastDate}</p>
     </div>
   `;
+  const styles = `
+    <style>
+      @media print {
+    * {
+        -webkit-print-color-adjust: exact;
+        /* Ensures color accuracy */
+        print-color-adjust: exact;
+    }
+
+    body {
+        display: block;
+        padding: 0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body::after {
+        content: "RTCC";
+        /* Your watermark text */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        font-size: 10rem;
+        color: rgba(0, 0, 0, 0.1);
+        /* Semi-transparent color */
+        font-weight: bold;
+        z-index: 1;
+        pointer-events: none;
+        /* Ensure it doesn't interfere with content */
+    }
+
+    /* Table wrappers and elements */
+    .table-wrapper {
+        background: transparent;
+    }
+
+    .gridjs-table {
+        border: 1px solid #000;
+        /* Replace g.$secondary with a valid color */
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .gridjs-th,
+    .gridjs-td,
+    .gridjs-tr {
+        border: 1px solid black;
+        /* Set border style for table, th, td, tr */
+        padding: 8px;
+        text-align: left;
+    }
+
+    /* Page layout */
+    @page {
+        margin: 10mm;
+    }
+
+    /* Hide print button */
+    .print-button {
+        display: none;
+    }
+}
+    </style>
+  `;
 
   const printContent = `
+    ${styles}
     ${dateRangeBox}
     ${gridWrapper.innerHTML}
   `;
 
-  const originalContent = document.body.innerHTML;
-
-  document.body.innerHTML = `
+  // Create a new window or iframe for printing
+  const printWindow = window.open("", "_blank");
+  printWindow.document.write(`
     <html>
       <head>
         <title>Print Table</title>
@@ -273,18 +346,16 @@ function printTable() {
         ${printContent}
       </body>
     </html>
-  `;
-
-  window.print();
-  document.body.innerHTML = originalContent; // Restore the original content
+  `);
+  printWindow.document.close(); // Ensure the document is fully loaded
+  printWindow.print(); // Trigger the print dialog
 }
 
-
-
-// Data Access and Filter 
+// Data Access and Filter
+let gridInstance = null;
 
 function DamTbl() {
-  new gridjs.Grid({
+  return new gridjs.Grid({
     // columns: ["Date", "Model", "CONO", "Hour", "Type"],
     columns: [
       { name: "Date", width: "150px" },
@@ -297,6 +368,27 @@ function DamTbl() {
       ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
       ["2024-08-21", "JCB035HD", "SL133", "9584", "E.O+F"],
       ["2024-08-21", "JCB535HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
+      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
       ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
       ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
       ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
@@ -340,23 +432,29 @@ function DamTbl() {
   }).render(document.getElementById("DAM_table"));
 }
 
-
-
 function openDAM() {
   let container = document.getElementById("DAM");
   container.style.display = "flex";
   let DAM_table = document.getElementById("DAM_table");
-  DAM_table.innerHTML = "";
-  DamTbl() // initialise the table 
-  console.log(DAM_table)
+  if (gridInstance) {
+    gridInstance.destroy(); // Destroy the existing Grid.js instance
+  }
+  DAM_table.innerHTML = ""; // Clear the container after destroying
+
+  gridInstance = DamTbl(); // Initialize the table and store the instance
 }
-// Closing DAM in desktops and PCs when the active element is not out DAM 
+// Closing DAM in desktops and PCs when the active element is not out DAM
 function DAMinactive(e) {
   let targetElem = document.getElementById("DAM");
   if (targetElem && !targetElem.contains(e.target)) {
     targetElem.style.display = "none";
     let DAM_table = document.getElementById("DAM_table");
-    DAM_table.innerHTML = ""; // destroy table
+    if (gridInstance) {
+      gridInstance.destroy(); // Destroy the Grid.js instance
+      gridInstance = null; // Reset the reference
+    }
+    DAM_table.innerHTML = ""; // Clear the container after destroying
+    document.getElementById("searchInput").value = ""; // destroy value of search
   }
 }
 document.addEventListener("click", DAMinactive, true);
@@ -365,40 +463,113 @@ function closeDAM() {
   let container = document.getElementById("DAM");
   container.style.display = "none";
   let DAM_table = document.getElementById("DAM_table");
-  DAM_table.innerHTML = ""; // destroy table 
-  console.log(DAM_table)
+  if (gridInstance) {
+    gridInstance.destroy(); // Destroy the Grid.js instance
+    gridInstance = null; // Reset the reference
+  }
+  DAM_table.innerHTML = ""; // Clear the container after destroying
+  document.getElementById("searchInput").value = ""; // destroy value of search
 }
 function printDAM() {
-  let wrapperElement = document.querySelector("#DAM_table .gridjs-wrapper");
-  let rows = wrapperElement.querySelectorAll("#DAM_table table tbody tr");
-  let company = "AL RASHID TRADING & CONTRACTING CO.";
+  const gridWrapper = document.querySelector("#DAM_table .gridjs-wrapper");
+  const tableRows = gridWrapper.querySelectorAll("#DAM_table table tbody tr");
+  const companyName = "AL RASHID TRADING & CONTRACTING CO.";
 
   // Extract all dates from the Date column
-  let dateList = Array.from(rows)
-    .map(row => row.querySelector("td:nth-child(1)")?.textContent.trim())
-    .filter(date => date && !isNaN(new Date(date))); // Ensure valid dates
+  const dates = Array.from(tableRows)
+    .map((row) => row.querySelector("td:nth-child(1)")?.textContent.trim())
+    .filter((date) => date && !isNaN(new Date(date))); // Ensure valid dates
 
   // Sort the dates to find the earliest and latest
-  let sortedDatesList = dateList.map(date => new Date(date)).sort((a, b) => a - b);
+  const sortedDates = dates.map((date) => new Date(date)).sort((a, b) => a - b);
 
-  let earliestDate = sortedDatesList.length > 0 ? sortedDatesList[0].toISOString().split('T')[0] : "N/A";
-  let latestDate = sortedDatesList.length > 0 ? sortedDatesList[sortedDatesList.length - 1].toISOString().split('T')[0] : "N/A";
+  const firstDate =
+    sortedDates.length > 0 ? sortedDates[0].toISOString().split("T")[0] : "N/A";
+  const lastDate =
+    sortedDates.length > 0
+      ? sortedDates[sortedDates.length - 1].toISOString().split("T")[0]
+      : "N/A";
 
-  let dateRangeBoxHTML = `
+  const dateRangeBox = `
     <div style="text-align: center; margin-bottom: 20px; border: 1px solid #000; padding: 10px;">
-      <h2>${company}</h2>
-      <p><strong>Date Range:</strong> ${earliestDate} - ${latestDate}</p>
+      <h2>${companyName}</h2>
+      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate}</p>
     </div>
   `;
+  const styles = `
+    <style>
+      @media print {
+    * {
+        -webkit-print-color-adjust: exact;
+        /* Ensures color accuracy */
+        print-color-adjust: exact;
+    }
 
-  let printContentHTML = `
-    ${dateRangeBoxHTML}
-    ${wrapperElement.innerHTML}
+    body {
+        display: block;
+        padding: 0;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    body::after {
+        content: "RTCC";
+        /* Your watermark text */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        font-size: 10rem;
+        color: rgba(0, 0, 0, 0.1);
+        /* Semi-transparent color */
+        font-weight: bold;
+        z-index: 1;
+        pointer-events: none;
+        /* Ensure it doesn't interfere with content */
+    }
+
+    /* Table wrappers and elements */
+    .table-wrapper {
+        background: transparent;
+    }
+
+    .gridjs-table {
+        border: 1px solid #000;
+        /* Replace g.$secondary with a valid color */
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .gridjs-th,
+    .gridjs-td,
+    .gridjs-tr {
+        border: 1px solid black;
+        /* Set border style for table, th, td, tr */
+        padding: 8px;
+        text-align: left;
+    }
+
+    /* Page layout */
+    @page {
+        margin: 10mm;
+    }
+
+    /* Hide print button */
+    .print-button {
+        display: none;
+    }
+}
+    </style>
+  `;
+  const printContent = `
+    ${styles}
+    ${dateRangeBox}
+    ${gridWrapper.innerHTML}
   `;
 
-  let originalPageContent = document.body.innerHTML;
-
-  document.body.innerHTML = `
+  // Create a new window or iframe for printing
+  const printWindow = window.open("", "_blank");
+  printWindow.document.write(`
     <html>
       <head>
         <title>Print Table</title>
@@ -409,11 +580,34 @@ function printDAM() {
         </style>
       </head>
       <body>
-        ${printContentHTML}
+        ${printContent}
       </body>
     </html>
-  `;
-
-  window.print();
-  document.body.innerHTML = originalPageContent; // Restore the original content
+  `);
+  printWindow.document.close(); // Ensure the document is fully loaded
+  printWindow.print(); // Trigger the print dialog
 }
+
+// handle searchBy function
+let method = document.getElementById("searchBy");
+method.addEventListener("change", () => {
+  let dateMethod = document.getElementById("dateMethod");
+  let otherMethod = document.getElementById("otherMethod");
+  if (method.value !== "date_range") {
+    otherMethod.style.display = "block";
+    dateMethod.style.display = "none";
+  } else {
+    otherMethod.style.display = "none";
+    dateMethod.style.display = "block";
+  }
+});
+// handle other method search to interact with main search
+let searchBy = document.getElementById("searchInput");
+searchBy.addEventListener("input", () => {
+  let targetSearch = document.querySelector(
+    ".right-access #DAM_table .gridjs-input.gridjs-search-input"
+  );
+  targetSearch.value = searchBy.value;
+  // Trigger the input event to make Grid.js recognize the change
+  targetSearch.dispatchEvent(new Event("input", { bubbles: true }));
+});
