@@ -119,7 +119,10 @@ function plate() {
     const selectedModel = machinesData.find(
       (item) => item.code === plateCoNo.value
     );
-    if (selectedModel) {
+    if (plateCoNo.value === "") {
+      modelInput.value = "";
+    }
+    else if (selectedModel) {
       modelInput.value = selectedModel.model; // Update the model field based on selected code
     }
   });
