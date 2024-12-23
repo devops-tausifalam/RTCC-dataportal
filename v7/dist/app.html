@@ -105,23 +105,21 @@
               Machine Information <br />
               <strong id="formError"></strong>
             </h2>
-            <div class="row">
-              <input type="date" name="date" id="dateService" required />
-            </div>
             <!-- adding an input of search plate number to avoid unneccesory scroll through select -->
-            <div class="plate-selection">
-              <input
-                type="text"
-                name="searchPlate"
-                id="searchPlate"
-                autocomplete="off"
-                placeholder="search plate"
-              />
-              <ul id="searchMatches"></ul>
-              <select id="plateCoNo" name="plateCoNo">
-                <option value="">select plate</option>
-                <!-- Code options will be populated dynamically -->
-              </select>
+            <div class="top-container">
+              <input type="date" name="date" id="dateService" required />
+                <input
+                  type="text"
+                  name="searchPlate"
+                  id="searchPlate"
+                  autocomplete="off"
+                  placeholder="search plate"
+                />
+                <ul id="searchMatches"></ul>
+                <select id="plateCoNo" name="plateCoNo">
+                  <option value="">select plate</option>
+                  <!-- Code options will be populated dynamically -->
+                </select>
               <!-- model -->
               <input
                 type="text"

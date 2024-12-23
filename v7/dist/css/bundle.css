@@ -151,19 +151,10 @@ input.error {
 }
 
 input[type=date] {
+  width: 50%;
   position: relative;
   padding: 6px 6px 6px 80px;
   flex: 1;
-}
-
-input[type=date]::before {
-  content: "Service Date:";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 5px;
-  font-size: 0.75em;
-  color: #8a8a8a;
 }
 
 button {
@@ -193,7 +184,7 @@ span.arabic-text {
   font-size: 1rem;
 }
 
-.plate-selection {
+.top-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -206,14 +197,14 @@ span.arabic-text {
   /* Add hover effect */
   /* Focus state for accessibility */
 }
-.plate-selection input {
+.top-container input {
   width: 100%;
   outline: none;
   padding: 6px;
   border-radius: 3px;
   border: 1px solid #ccc;
 }
-.plate-selection #searchMatches {
+.top-container #searchMatches {
   box-sizing: border-box;
   list-style: none;
   margin: 0;
@@ -228,29 +219,29 @@ span.arabic-text {
   width: 100%;
   z-index: 1000;
 }
-.plate-selection #searchMatches li {
+.top-container #searchMatches li {
   padding: 8px 10px;
   cursor: pointer;
   font-size: 14px;
   color: #333;
   transition: background-color 0.3s ease;
 }
-.plate-selection #searchMatches li:hover {
+.top-container #searchMatches li:hover {
   background-color: #f1f1f1;
   color: #007BFF;
 }
-.plate-selection #searchMatches li:focus {
+.top-container #searchMatches li:focus {
   outline: none;
   background-color: #f1f1f1;
   color: #007BFF;
 }
-.plate-selection #plateCoNo {
+.top-container #plateCoNo {
   outline: none;
   padding: 6px;
   border-radius: 3px;
   border: 1px solid #ccc;
 }
-.plate-selection #plateCoNo:focus {
+.top-container #plateCoNo:focus {
   border: 2px solid #0D92F4;
 }
 
@@ -269,13 +260,15 @@ span.arabic-text {
     flex-direction: column;
     align-items: stretch;
   }
-  input[type=date]::before {
-    top: 50%;
-    transform: translateY(-50%);
-  }
   input[type=date],
   #plateCoNo {
     width: 100%;
+  }
+  .top-container {
+    flex-direction: column;
+  }
+  .top-container #searchMatches {
+    top: 50%;
   }
 }
 .record-wrapper h2 {

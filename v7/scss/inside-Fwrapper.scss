@@ -107,29 +107,11 @@ input {
 }
 
 input[type="date"] {
+    width: 50%;
     position: relative;
     padding: 6px 6px 6px 80px;
     flex: 1; // Allow input to take equal space
 }
-
-input[type="date"]::before {
-    content: "Service Date:";
-    position: absolute;
-    top: 50%; // Center vertically
-    transform: translateY(-50%);
-    left: 5px;
-    font-size: 0.75em;
-    color: g.$notes-text;
-}
-
-// #plateCoNo {
-//     height: 36px; // Match the height of the date input
-//     padding: 6px;
-//     border-radius: 3px;
-//     border: 1px solid #ddd;
-//     background-color: #f9f9f9;
-//     flex: 1; // Allow input to take equal space
-// }
 
 // Button Styles
 button {
@@ -161,7 +143,7 @@ span.arabic-text {
     font-size: 1rem;
 }
 
-.plate-selection {
+.top-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -250,13 +232,15 @@ span.arabic-text {
         align-items: stretch; // Ensure full-width alignment
     }
 
-    input[type="date"]::before {
-        top: 50%; // Adjust for smaller screens
-        transform: translateY(-50%);
-    }
-
     input[type="date"],
     #plateCoNo {
         width: 100%; // Ensure full-width inputs
+    }
+
+    .top-container {
+        flex-direction: column;
+        #searchMatches {
+            top: 50%;
+        }
     }
 }
