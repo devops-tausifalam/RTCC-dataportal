@@ -71,15 +71,22 @@
               <option value="service_type">Service Type</option>
             </select>
             <!-- data-range -->
-             <div id="dateMethod">
-              <label for="dateRangeStart" id="startDateLabel">Start Date:</label>
+            <div id="dateMethod">
+              <label for="dateRangeStart" id="startDateLabel"
+                >Start Date:</label
+              >
               <input type="date" id="dateRangeStart" />
               <label for="dateRangeEnd" id="endDateLabel">End Date:</label>
               <input type="date" id="dateRangeEnd" />
-             </div>
-             <div id="otherMethod">
-              <input type="text" id="searchInput" autocomplete="off" placeholder="Type to search..."/>
-             </div>
+            </div>
+            <div id="otherMethod">
+              <input
+                type="text"
+                id="searchInput"
+                autocomplete="off"
+                placeholder="Type to search..."
+              />
+            </div>
             <section class="btngroup">
               <button>Edit</button>
               <button onclick="printDAM()">Print</button>
@@ -100,8 +107,19 @@
             </h2>
             <div class="row">
               <input type="date" name="date" id="dateService" required />
-              <select id="plateCoNo" name="plateCoNo" required>
-                <option value="">Plate/CoNo</option>
+            </div>
+            <!-- adding an input of search plate number to avoid unneccesory scroll through select -->
+            <div class="plate-selection">
+              <input
+                type="text"
+                name="searchPlate"
+                id="searchPlate"
+                autocomplete="off"
+                placeholder="search plate"
+              />
+              <ul id="searchMatches"></ul>
+              <select id="plateCoNo" name="plateCoNo">
+                <option value="">select plate</option>
                 <!-- Code options will be populated dynamically -->
               </select>
               <!-- model -->

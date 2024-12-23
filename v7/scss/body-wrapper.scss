@@ -70,64 +70,64 @@ body {
     }
 }
 
-@media print {
-    * {
-        -webkit-print-color-adjust: exact;
-        /* Ensures color accuracy */
-        print-color-adjust: exact;
-    }
+// @media print {
+//     * {
+//         -webkit-print-color-adjust: exact;
+//         /* Ensures color accuracy */
+//         print-color-adjust: exact;
+//     }
 
-    body {
-        display: block;
-        padding: 0;
-        margin: 0;
-        font-family: Arial, sans-serif;
-    }
+//     body {
+//         display: block;
+//         padding: 0;
+//         margin: 0;
+//         font-family: Arial, sans-serif;
+//     }
 
-    body::after {
-        content: "RTCC";
-        /* Your watermark text */
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(-45deg);
-        font-size: 10rem;
-        color: rgba(0, 0, 0, 0.1);
-        /* Semi-transparent color */
-        font-weight: bold;
-        z-index: 1;
-        pointer-events: none;
-        /* Ensure it doesn't interfere with content */
-    }
+//     body::after {
+//         content: "RTCC";
+//         /* Your watermark text */
+//         position: absolute;
+//         top: 50%;
+//         left: 50%;
+//         transform: translate(-50%, -50%) rotate(-45deg);
+//         font-size: 10rem;
+//         color: rgba(0, 0, 0, 0.1);
+//         /* Semi-transparent color */
+//         font-weight: bold;
+//         z-index: 1;
+//         pointer-events: none;
+//         /* Ensure it doesn't interfere with content */
+//     }
 
-    /* Table wrappers and elements */
-    .table-wrapper {
-        background: transparent;
-    }
+//     /* Table wrappers and elements */
+//     .table-wrapper {
+//         background: transparent;
+//     }
 
-    .gridjs-table {
-        border: 1px solid #000;
-        /* Replace g.$secondary with a valid color */
-        width: 100%;
-        border-collapse: collapse;
-    }
+//     .gridjs-table {
+//         border: 1px solid #000;
+//         /* Replace g.$secondary with a valid color */
+//         width: 100%;
+//         border-collapse: collapse;
+//     }
 
-    .gridjs-th,
-    .gridjs-td,
-    .gridjs-tr {
-        border: 1px solid black;
-        /* Set border style for table, th, td, tr */
-        padding: 8px;
-        text-align: left;
-    }
+//     .gridjs-th,
+//     .gridjs-td,
+//     .gridjs-tr {
+//         border: 1px solid black;
+//         /* Set border style for table, th, td, tr */
+//         padding: 8px;
+//         text-align: left;
+//     }
 
-    /* Page layout */
-    @page {
-        margin: 10mm;
-    }
+//     /* Page layout */
+//     @page {
+//         margin: 10mm;
+//     }
 
-    /* Hide print button */
-    .print-button {
-        display: none;
-    }
-}
+//     /* Hide print button */
+//     .print-button {
+//         display: none;
+//     }
+// }
