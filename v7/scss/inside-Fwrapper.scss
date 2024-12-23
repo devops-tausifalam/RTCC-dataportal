@@ -106,12 +106,12 @@ input {
     }
 }
 
-input[type="date"] {
-    width: 50%;
-    position: relative;
-    padding: 6px 6px 6px 80px;
-    flex: 1; // Allow input to take equal space
-}
+// input[type="date"] {
+//     width: 50%;
+//     position: relative;
+//     padding: 6px 6px 6px 80px;
+//     flex: 1; // Allow input to take equal space
+// }
 
 // Button Styles
 button {
@@ -152,6 +152,11 @@ span.arabic-text {
     flex: 1 1 0;
     box-sizing: border-box;
     position: relative;
+
+    // hide date label for desktops
+    label {
+        display: none;
+    }
 
     input {
         width: 100%;
@@ -227,9 +232,32 @@ span.arabic-text {
         gap: 2px; // Adjust gap for stacked layout
     }
 
-    div.row {
-        flex-direction: column;
-        align-items: stretch; // Ensure full-width alignment
+    input[type="date"] {
+        position: relative;
+        width: 100%;
+        padding: 6px 6px 6px 80px;
+        /* Adjusts padding to create space for the custom label */
+        font-size: 12px;
+        background-color: #f4f4f4;
+        /* Light background for the input */
+        border: 1px solid #ccc;
+        /* Border for the input */
+        border-radius: 5px;
+        /* Rounded corners */
+    }
+
+    input[type="date"]::before {
+        content: "Select Date";
+        position: absolute;
+        top: 50%;
+        left: 8px;
+        transform: translateY(-50%);
+        font-size: 10px;
+        color: #aaa;
+        /* Light gray color for the label */
+        pointer-events: none;
+        /* Prevents interference with clicking */
+        transition: opacity 0.3s ease-in-out;
     }
 
     input[type="date"],
@@ -239,6 +267,7 @@ span.arabic-text {
 
     .top-container {
         flex-direction: column;
+
         #searchMatches {
             top: 50%;
         }
