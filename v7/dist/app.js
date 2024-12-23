@@ -370,11 +370,14 @@ function printTable() {
     sortedDates.length > 0
       ? sortedDates[sortedDates.length - 1].toISOString().split("T")[0]
       : "N/A";
-
+  // generate random printID with timestamp combined
+  const timestring = Date.now().toString(36); // base-12 string
+  const randomValue = Math.random().toString(36).substring(2, 10);
+  const printID = `${timestring}-${randomValue}`
   const dateRangeBox = `
     <div style="text-align: center; margin-bottom: 20px; border: 1px solid #000; padding: 10px;">
       <h2>${companyName}</h2>
-      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate}</p>
+      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate} / UID: ${printID} </p>
     </div>
   `;
   const styles = `
@@ -458,7 +461,7 @@ function printTable() {
   printWindow.document.write(`
     <html>
       <head>
-        <title>service record api: rtcc</title>
+        <title>UID: ${printID}</title>
         <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
         <style>
           body { font-family: Arial, sans-serif; }
@@ -612,11 +615,15 @@ function printDAM() {
     sortedDates.length > 0
       ? sortedDates[sortedDates.length - 1].toISOString().split("T")[0]
       : "N/A";
+  // generate random printID with timestamp combined
+  const timestring = Date.now().toString(36); // base-12 string
+  const randomValue = Math.random().toString(36).substring(2, 10);
 
+  const printID = `${timestring}-${randomValue}`;
   const dateRangeBox = `
     <div style="text-align: center; margin-bottom: 20px; border: 1px solid #000; padding: 10px;">
       <h2>${companyName}</h2>
-      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate}</p>
+      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate} / UID: ${printID}</p>
     </div>
   `;
   const styles = `
@@ -638,7 +645,7 @@ function printDAM() {
     body::after {
         content: "RTCC";
         /* Your watermark text */
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
@@ -689,7 +696,6 @@ function printDAM() {
     ${dateRangeBox}
     ${gridWrapper.innerHTML}
   `;
-
   // Create a new window or iframe for printing
   const printWindow = window.open(
     "",
@@ -699,7 +705,7 @@ function printDAM() {
   printWindow.document.write(`
     <html>
       <head>
-        <title>service record api: rtcc</title>
+        <title>UID: ${printID}</title>
         <link href="https://cdn.jsdelivr.net/npm/gridjs/dist/theme/mermaid.min.css" rel="stylesheet">
         <style>
           body { font-family: Arial, sans-serif; }
