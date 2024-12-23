@@ -377,7 +377,7 @@ function printTable() {
   const dateRangeBox = `
     <div style="text-align: center; margin-bottom: 20px; border: 1px solid #000; padding: 10px;">
       <h2>${companyName}</h2>
-      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate} / UID: ${printID} </p>
+      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate} / <strong>UID:</strong> ${printID} </p>
     </div>
   `;
   const styles = `
@@ -623,7 +623,7 @@ function printDAM() {
   const dateRangeBox = `
     <div style="text-align: center; margin-bottom: 20px; border: 1px solid #000; padding: 10px;">
       <h2>${companyName}</h2>
-      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate} / UID: ${printID}</p>
+      <p><strong>Date Range:</strong> ${firstDate} - ${lastDate} / <strong>UID:</strong> ${printID}</p>
     </div>
   `;
   const styles = `
