@@ -158,6 +158,63 @@ function plate() {
   });
 }
 plate(); // Call the function to initialize
+
+// enabling site input suggestions and adding strict acceptable values
+function Worksites() {
+  // address to sites data
+  let availSites = "scripts/data/site.json";
+  // site input
+  let siteInput = document.getElementById("site");
+  // site suggestion ul
+  let siteSuggestion = document.getElementById("siteSuggestion");
+  // site array to store fetched site data
+  let siteData = [];
+
+  fetch(availSites)
+    .then((resp) => resp.json())
+    .then((data) => {
+      siteData = data; // push the latest site data to the array
+    })
+    .catch((error) => {
+      let formError = document.getElementById("formError");
+      formError.textContent = error;
+      setTimeout(() => {
+        formError.textContent = ""; // Remove error message after 2.5s
+      }, 2500);
+    });
+
+  // handling the input to filter and match character
+  siteInput.addEventListener("input", (event) => {
+    let query = event.target.value.toLowerCase(); // convert values to lowercase for sorting
+    siteSuggestion.innerHTML = ""; // clear suggestions if exits for new suggestion
+    if (query) {
+      const sites = siteData.filter((item) => {
+        console.log(
+          item.name.toLowerCase().includes(query) ||
+            item.transcription.toLowerCase().includes(query)
+        );
+        return (
+          item.name.toLowerCase().includes(query) ||
+          item.transcription.toLowerCase().includes(query)
+        );
+      });
+      sites.forEach((item) => {
+        let siteList = document.createElement("li");
+        siteList.textContent = item.name + "/" + item.transcription;
+        // add click function to assign values to our input namely the search and the model
+        siteList.addEventListener("click", () => {
+          siteInput.value = item.name + "/" + item.transcription;
+          siteSuggestion.innerHTML = ""; // clear the ul once user selects his desired matched
+        });
+        siteSuggestion.appendChild(siteList);
+      });
+    }
+  });
+}
+Worksites(); // call the function
+// update position of suggestion list on viewport availability
+// Function to update the position of the suggestion list
+
 function valid() {
   let dateService = document.getElementById("dateService").value;
 
@@ -185,6 +242,7 @@ function valid() {
       plateCoNo || searchPlate,
       hourKM,
       serviceType,
+      site,
     ];
     // GET input=checked values
     let forSheetData = [{ ...submissionData, ...getCheckboxStates() }];
@@ -266,18 +324,6 @@ function onFailed() {
   } else {
     error.textContent = "";
   }
-  // let missingFields = inputs
-  //   .filter((zeroInput) => !zeroInput.elem.value)
-  //   .map((zeroInput) => {
-  //     zeroInput.elem.classList.add("error");
-  //     return zeroInput.name;
-  //   });
-  // if (missingFields.length > 0) {
-  //   errorMssg += missingFields.join(", ");
-  //   error.textContent = errorMssg;
-  // } else {
-  //   error.textContent = "";
-  // }
 }
 function consent() {
   // take consent for data accuracy from user and send it to backend and update the table
@@ -373,7 +419,7 @@ function printTable() {
   // generate random printID with timestamp combined
   const timestring = Date.now().toString(36); // base-12 string
   const randomValue = Math.random().toString(36).substring(2, 10);
-  const printID = `${timestring}-${randomValue}`
+  const printID = `${timestring}-${randomValue}`;
   const dateRangeBox = `
     <div style="text-align: center; margin-bottom: 20px; border: 1px solid #000; padding: 10px;">
       <h2>${companyName}</h2>

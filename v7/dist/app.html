@@ -33,6 +33,7 @@
                   <th>CONO</th>
                   <th>HOUR</th>
                   <th>TYPE</th>
+                  <th>SITE</th>
                 </tr>
               </thead>
               <tbody>
@@ -115,7 +116,7 @@
                   autocomplete="off"
                   placeholder="search plate"
                 />
-                <ul id="searchMatches"></ul>
+                <ul id="searchMatches" class="suggestionList"></ul>
                 <select id="plateCoNo" name="plateCoNo">
                   <option value="">select plate</option>
                   <!-- Code options will be populated dynamically -->
@@ -372,6 +373,7 @@
                   placeholder="Enter site/location"
                   required
                 />
+                <ul id="siteSuggestion" class="suggestionList"></ul>
               </div>
               <!-- <div class="input-container">
                 <label for="battery" class="input-labels"

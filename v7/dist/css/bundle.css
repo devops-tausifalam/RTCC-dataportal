@@ -186,9 +186,6 @@ span.arabic-text {
   flex: 1 1 0;
   box-sizing: border-box;
   position: relative;
-  /* Style each list item */
-  /* Add hover effect */
-  /* Focus state for accessibility */
 }
 .top-container label {
   display: none;
@@ -200,7 +197,21 @@ span.arabic-text {
   border-radius: 3px;
   border: 1px solid #ccc;
 }
-.top-container #searchMatches {
+.top-container #plateCoNo {
+  outline: none;
+  padding: 6px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+.top-container #plateCoNo:focus {
+  border: 2px solid #0D92F4;
+}
+
+.input-container {
+  position: relative;
+}
+
+.suggestionList {
   box-sizing: border-box;
   list-style: none;
   margin: 0;
@@ -215,30 +226,27 @@ span.arabic-text {
   width: 100%;
   z-index: 1000;
 }
-.top-container #searchMatches li {
+
+/* Style each list item */
+.suggestionList li {
   padding: 8px 10px;
   cursor: pointer;
   font-size: 14px;
   color: #333;
   transition: background-color 0.3s ease;
 }
-.top-container #searchMatches li:hover {
+
+/* Add hover effect */
+.suggestionList li:hover {
   background-color: #f1f1f1;
   color: #007BFF;
 }
-.top-container #searchMatches li:focus {
+
+/* Focus state for accessibility */
+.suggestionList li:focus {
   outline: none;
   background-color: #f1f1f1;
   color: #007BFF;
-}
-.top-container #plateCoNo {
-  outline: none;
-  padding: 6px;
-  border-radius: 3px;
-  border: 1px solid #ccc;
-}
-.top-container #plateCoNo:focus {
-  border: 2px solid #0D92F4;
 }
 
 @media screen and (max-width: 768px) {
@@ -285,7 +293,7 @@ span.arabic-text {
   .top-container {
     flex-direction: column;
   }
-  .top-container #searchMatches {
+  .top-container .suggestionList {
     top: 50%;
   }
 }
@@ -474,20 +482,6 @@ div.right-access .gridjs-wrapper {
 }
 
 /* Modal description */
-.dataAccessModal p {
-  color: #555;
-  font-size: 0.9em;
-  margin-bottom: 20px;
-}
-
-.mbNotes {
-  display: none;
-}
-
-.pcNotes {
-  display: block;
-}
-
 /* Date input styles */
 .dataAccessModal label {
   display: block;

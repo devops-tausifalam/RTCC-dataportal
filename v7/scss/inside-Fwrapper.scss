@@ -166,44 +166,6 @@ span.arabic-text {
         border: 1px solid #ccc;
     }
 
-    #searchMatches {
-        box-sizing: border-box;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        max-height: 200px;
-        overflow-y: auto;
-        border-radius: 5px;
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        z-index: 1000;
-    }
-
-    /* Style each list item */
-    #searchMatches li {
-        padding: 8px 10px;
-        cursor: pointer;
-        font-size: 14px;
-        color: #333;
-        transition: background-color 0.3s ease;
-    }
-
-    /* Add hover effect */
-    #searchMatches li:hover {
-        background-color: #f1f1f1;
-        color: #007BFF;
-    }
-
-    /* Focus state for accessibility */
-    #searchMatches li:focus {
-        outline: none;
-        background-color: #f1f1f1;
-        color: #007BFF;
-    }
-
     #plateCoNo {
         outline: none;
         padding: 6px;
@@ -215,7 +177,48 @@ span.arabic-text {
         }
     }
 }
+// bottom input-container set to relative to manage suggestion list position
+.input-container {
+    position: relative;
+}
+// suggestion list
+.suggestionList {
+    box-sizing: border-box;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    z-index: 1000;
+}
 
+/* Style each list item */
+.suggestionList li {
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+/* Add hover effect */
+.suggestionList li:hover {
+    background-color: #f1f1f1;
+    color: #007BFF;
+}
+
+/* Focus state for accessibility */
+.suggestionList li:focus {
+    outline: none;
+    background-color: #f1f1f1;
+    color: #007BFF;
+}
 
 
 // Responsive Styles
@@ -267,8 +270,7 @@ span.arabic-text {
 
     .top-container {
         flex-direction: column;
-
-        #searchMatches {
+        .suggestionList {
             top: 50%;
         }
     }
