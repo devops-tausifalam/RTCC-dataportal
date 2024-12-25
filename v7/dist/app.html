@@ -38,14 +38,13 @@
               </thead>
               <tbody>
                 <tr id="userResponseRow">
-                  <!-- <td>2024-08-21</td>
-                  <td>JCB135HD</td>
-                  <td>SL133</td>
-                  <td>9584</td>
-                  <td>E.O+F</td> -->
+                  <!-- dynamiccally added -->
                 </tr>
               </tbody>
             </table>
+            <div id="services-row">
+              <!-- dynamiccally populated -->
+            </div>
           </div>
           <div class="flex-down">Are you sure, want to submit?</div>
           <button>Submit</button>
@@ -363,6 +362,7 @@
                 />
               </div>
               <div class="input-container">
+                <ul id="siteSuggestion" class="suggestionList siteList"></ul>
                 <label for="site" class="input-labels">Site:</label>
                 <br />
                 <input
@@ -373,7 +373,6 @@
                   placeholder="Enter site/location"
                   required
                 />
-                <ul id="siteSuggestion" class="suggestionList"></ul>
               </div>
               <!-- <div class="input-container">
                 <label for="battery" class="input-labels"

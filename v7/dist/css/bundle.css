@@ -249,6 +249,10 @@ span.arabic-text {
   color: #007BFF;
 }
 
+.suggestionList.siteList {
+  top: -10px;
+}
+
 @media screen and (max-width: 768px) {
   div.grid {
     display: flex;
@@ -293,7 +297,7 @@ span.arabic-text {
   .top-container {
     flex-direction: column;
   }
-  .top-container .suggestionList {
+  .top-container .suggestionList:not(.siteList) {
     top: 50%;
   }
 }

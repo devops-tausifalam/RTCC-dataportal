@@ -68,24 +68,31 @@ document.getElementById("battery").addEventListener("input", () => {
 
 //get all checkbox values for sheet submission
 function getCheckboxStates() {
-  return {
-    oilFilter: document.getElementById("oilFilter").checked,
-    fuelFilter: document.getElementById("fuelFilter").checked,
-    waterSep: document.getElementById("waterSep").checked,
-    engineOil: document.getElementById("engineOil").checked,
-    returnFilter: document.getElementById("returnFilter").checked,
-    strainer: document.getElementById("strainer").checked,
-    drainFilter: document.getElementById("drainFilter").checked,
-    lineFilter: document.getElementById("lineFilter").checked,
-    hydOil: document.getElementById("hydOil").checked,
-    finalDriveOil: document.getElementById("finalDriveOil").checked,
-    swingMotorOil: document.getElementById("swingMotorOil").checked,
-    airFilter: document.getElementById("airFilter").checked,
-    acFilter: document.getElementById("acFilter").checked,
-    transmissionOil: document.getElementById("transmissionOil").checked,
-    transmissionFilter: document.getElementById("transmissionFilter").checked,
+  const servicesCheck = {
+    oilFilter: document.getElementById("oilFilter").checked ? "R" : "",
+    fuelFilter: document.getElementById("fuelFilter").checked ? "R" : "",
+    waterSep: document.getElementById("waterSep").checked ? "R" : "",
+    engineOil: document.getElementById("engineOil").checked ? "R" : "",
+    returnFilter: document.getElementById("returnFilter").checked ? "R" : "",
+    strainer: document.getElementById("strainer").checked ? "R" : "",
+    drainFilter: document.getElementById("drainFilter").checked ? "R" : "",
+    lineFilter: document.getElementById("lineFilter").checked ? "R" : "",
+    hydOil: document.getElementById("hydOil").checked ? "R" : "",
+    finalDriveOil: document.getElementById("finalDriveOil").checked ? "R" : "",
+    swingMotorOil: document.getElementById("swingMotorOil").checked ? "R" : "",
+    airFilter: document.getElementById("airFilter").checked ? "R" : "",
+    acFilter: document.getElementById("acFilter").checked ? "R" : "",
+    transmissionOil: document.getElementById("transmissionOil").checked
+      ? "R"
+      : "",
+    transmissionFilter: document.getElementById("transmissionFilter").checked
+      ? "R"
+      : "",
   };
+
+  return servicesCheck;
 }
+
 // Handle Plate dropdown and related functions for form , trigger the table to show data related to the selected dropdown
 function plate() {
   let MachineJSON = "scripts/data/machines.json";
@@ -189,10 +196,6 @@ function Worksites() {
     siteSuggestion.innerHTML = ""; // clear suggestions if exits for new suggestion
     if (query) {
       const sites = siteData.filter((item) => {
-        console.log(
-          item.name.toLowerCase().includes(query) ||
-            item.transcription.toLowerCase().includes(query)
-        );
         return (
           item.name.toLowerCase().includes(query) ||
           item.transcription.toLowerCase().includes(query)
@@ -256,6 +259,39 @@ function valid() {
       resp_data.textContent = respArray;
       userResponseRow.appendChild(resp_data);
     });
+    let serviceDetails = document.getElementById("services-row");
+    let details = document.createElement("details");
+
+    let childElem = `
+        <summary>Checked Services</summary>
+    `;
+    // Get the checkbox states
+    const checkboxStates = getCheckboxStates();
+
+    // Filter out the services that are checked (those with "R")
+    const checkedServices = Object.keys(checkboxStates).filter(
+      (key) => checkboxStates[key] === "R"
+    );
+
+    // Create a string of checked services
+    let servicesText = "";
+    if (checkedServices.length > 0) {
+      servicesText =
+        checkedServices.join(", ") +
+        ".";
+    } else {
+      servicesText = "No services are selected.";
+    }
+
+    // Add the text to the childElem
+    childElem += `<p style="font-weight: 600; color: #0077cc">${servicesText}</p>`;
+
+    // Set the inner HTML of the details element
+    details.innerHTML = childElem;
+
+    // Append the details element to the serviceDetails container
+    serviceDetails.appendChild(details);
+
     return true;
   }
 }

@@ -220,6 +220,11 @@ span.arabic-text {
     color: #007BFF;
 }
 
+// for siteSuggestion positioning
+.suggestionList.siteList {
+    top: -10px; // make sure a top position so that scroll and crop not happens
+}
+
 
 // Responsive Styles
 @media screen and (max-width: 768px) {
@@ -270,7 +275,7 @@ span.arabic-text {
 
     .top-container {
         flex-direction: column;
-        .suggestionList {
+        .suggestionList:not(.siteList) {
             top: 50%;
         }
     }
