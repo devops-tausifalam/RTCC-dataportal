@@ -249,7 +249,14 @@ function valid() {
     ];
     // GET input=checked values
     let forSheetData = [{ ...submissionData, ...getCheckboxStates() }];
-    console.log(forSheetData);
+    // save this data to localStorage to handle post event later
+    let tempData = localStorage;
+    if (!localStorage.getItem("POST_data")){
+      tempData.setItem("POST_data", forSheetData);
+    } else {
+      tempData.removeItem("POST_data"); // clear the existing
+      tempData.setItem("POST_data", forSheetData); // add the following
+    }
     // show response to the user from submissionData
     let userResponseRow = document.getElementById("userResponseRow");
     // clear existing <td>
