@@ -251,11 +251,12 @@ function valid() {
     let forSheetData = [{ ...submissionData, ...getCheckboxStates() }];
     // save this data to localStorage to handle post event later
     let tempData = localStorage;
+    const stringedData = JSON.stringify(forSheetData); // convert object to string to save it in localstorage
     if (!localStorage.getItem("POST_data")){
-      tempData.setItem("POST_data", forSheetData);
+      tempData.setItem("POST_data", stringedData);
     } else {
       tempData.removeItem("POST_data"); // clear the existing
-      tempData.setItem("POST_data", forSheetData); // add the following
+      tempData.setItem("POST_data", stringedData); // add the following
     }
     // show response to the user from submissionData
     let userResponseRow = document.getElementById("userResponseRow");
@@ -268,6 +269,7 @@ function valid() {
     });
     let serviceDetails = document.getElementById("services-row");
     let details = document.createElement("details");
+    details.id = "checkedList"; // may help handling reset when user choose to edit the form
 
     let childElem = `
         <summary>Checked Services</summary>
@@ -385,6 +387,10 @@ checkData.addEventListener("click", (e) => {
 // called when the user clicks edit button
 function hideConsent() {
   iConsent.style.display = "none";
+  let details = document.getElementById("checkedList");
+  if (details) {
+    details.remove(); // prevents additional childs inside consent-modal
+  }
 }
 // table-init
 function mainTbl() {
