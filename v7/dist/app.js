@@ -1,7 +1,3 @@
-window.onload = () => {
-  mainTbl(); //initailize the table
-};
-
 //Form validation and Modal submission
 
 //transfer required values of serviceType to type.value
@@ -131,11 +127,15 @@ function plate() {
     } else if (selectedModel) {
       modelInput.value = selectedModel.model; // Update the model field based on selected code
     }
+    mainTbl(); // call main table when user types plate number to show service history
   });
 
   // enabling autoSuggestions from machinedata to search input
   let searchPlate = document.getElementById("searchPlate");
   let matchedList = document.getElementById("searchMatches");
+  searchPlate.addEventListener("change", () => {
+    mainTbl(); // call main table when user types plate number to show service history
+  });
   searchPlate.addEventListener("input", (event) => {
     const query = event.target.value.toLowerCase(); // get the query in lowercase
     matchedList.innerHTML = ""; // clear ul for new list of search matches
@@ -395,7 +395,7 @@ function hideConsent() {
 // table-init
 function mainTbl() {
   // Get the values from the input and select elements
-  const searchPlateValue = document.getElementById("id#searchPlate").value.trim();
+  const searchPlateValue = document.getElementById("searchPlate").value.trim();
   const selectedPlateCoNo = document.getElementById("plateCoNo").value.trim();
 
   // Fetch all data using the exportData function
