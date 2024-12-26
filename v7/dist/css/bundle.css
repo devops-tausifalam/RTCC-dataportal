@@ -674,9 +674,6 @@ div#otherMethod input#searchInput:focus {
     font-size: 1rem;
     /* Larger font size for mobile readability */
   }
-  .dataAccessModal .btngroup button:nth-child(2) {
-    display: none;
-  }
   .dataAccessModal .btngroup button:nth-child(1) {
     display: none;
   }
