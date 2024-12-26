@@ -394,56 +394,62 @@ function hideConsent() {
 }
 // table-init
 function mainTbl() {
-  return new gridjs.Grid({
-    // columns: ["Date", "Model", "CONO", "Hour", "Type"],
-    columns: [
-      { name: "Date", width: "150px" },
-      { name: "Model" },
-      { name: "CONO", width: "125px" },
-      { name: "Hour", width: "125px" },
-      { name: "Type", width: "125px" },
-      { name: "Site", width: "125px" },
-    ],
-    data: [
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB035HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB535HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-    ],
-    search: true,
-    sort: true,
-    fixedHeader: true,
-    language: {
-      search: {
-        placeholder: "Find specific data...",
-      },
-    },
-    style: {
-      table: {
-        width: "100%",
-        "border-collapse": "collapse",
-        margin: "10px auto",
-        "table-layout": "fixed",
-      },
-      th: {
-        padding: "10px",
-        "text-align": "left",
-        "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
-        "background-color": "#FFB200",
-        color: "#ffffff",
-        "font-weight": "bold",
-      },
-      td: {
-        padding: "10px",
-        "text-align": "left",
-        "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
-      },
-    },
-  }).render(document.getElementById("table-wrapper"));
+  // Get the values from the input and select elements
+  const searchPlateValue = document.getElementById("id#searchPlate").value.trim();
+  const selectedPlateCoNo = document.getElementById("plateCoNo").value.trim();
+
+  // Fetch all data using the exportData function
+  google.script.run.withSuccessHandler(function(data) {
+      const parsedData = JSON.parse(data);
+      
+      // Filter the data based on the input and select values
+      const filteredData = parsedData.filter(row => {
+          const plateValue = row[2]; // Assuming the 3rd column is "CONO" or "PLATE"
+          return plateValue === searchPlateValue || plateValue === selectedPlateCoNo;
+      });
+
+      // Initialize the Grid.js table
+      const grid = new gridjs.Grid({
+          columns: [
+              { name: "Date", width: "150px" },
+              { name: "Model" },
+              { name: "CONO", width: "125px" },
+              { name: "Hour", width: "125px" },
+              { name: "Type", width: "125px" },
+              { name: "Site", width: "125px" },
+          ],
+          data: filteredData, // Use the filtered data
+          search: true,
+          sort: true,
+          fixedHeader: true,
+          language: {
+              search: {
+                  placeholder: "Find specific data...",
+              },
+          },
+          style: {
+              table: {
+                  width: "100%",
+                  "border-collapse": "collapse",
+                  margin: "10px auto",
+                  "table-layout": "fixed",
+              },
+              th: {
+                  padding: "10px",
+                  "text-align": "left",
+                  "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
+                  "background-color": "#FFB200",
+                  color: "#ffffff",
+                  "font-weight": "bold",
+              },
+              td: {
+                  padding: "10px",
+                  "text-align": "left",
+                  "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
+              },
+          },
+      }).render(document.getElementById("table-wrapper"));
+  }).exportData(); // Call the exportData function to get all data
 }
 // Print Functionality
 // Print function to print the grid
