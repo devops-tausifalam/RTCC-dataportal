@@ -95,7 +95,8 @@ function getCheckboxStates() {
 
 // Handle Plate dropdown and related functions for form , trigger the table to show data related to the selected dropdown
 function plate() {
-  let MachineJSON = "https://servicecord.vercel.app/v7/dist/scripts/data/machines.json";
+  let MachineJSON =
+    "https://servicecord.vercel.app/v7/dist/scripts/data/machines.json";
   let plateCoNo = document.getElementById("plateCoNo");
 
   let machinesData = [];
@@ -169,7 +170,8 @@ plate(); // Call the function to initialize
 // enabling site input suggestions and adding strict acceptable values
 function Worksites() {
   // address to sites data
-  let availSites = "https://servicecord.vercel.app/v7/dist/scripts/data/site.json";
+  let availSites =
+    "https://servicecord.vercel.app/v7/dist/scripts/data/site.json";
   // site input
   let siteInput = document.getElementById("site");
   // site suggestion ul
@@ -252,7 +254,7 @@ function valid() {
     // save this data to localStorage to handle post event later
     let tempData = localStorage;
     const stringedData = JSON.stringify(forSheetData); // convert object to string to save it in localstorage
-    if (!localStorage.getItem("POST_data")){
+    if (!localStorage.getItem("POST_data")) {
       tempData.setItem("POST_data", stringedData);
     } else {
       tempData.removeItem("POST_data"); // clear the existing
@@ -285,9 +287,7 @@ function valid() {
     // Create a string of checked services
     let servicesText = "";
     if (checkedServices.length > 0) {
-      servicesText =
-        checkedServices.join(", ") +
-        ".";
+      servicesText = checkedServices.join(", ") + ".";
     } else {
       servicesText = "No services are selected.";
     }
@@ -402,6 +402,7 @@ function mainTbl() {
       { name: "CONO", width: "125px" },
       { name: "Hour", width: "125px" },
       { name: "Type", width: "125px" },
+      { name: "Site", width: "125px" },
     ],
     data: [
       ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
@@ -576,51 +577,17 @@ function printTable() {
 let gridInstance = null;
 
 function DamTbl() {
-  return new gridjs.Grid({
-    // columns: ["Date", "Model", "CONO", "Hour", "Type"],
+  // Initialize the Grid.js table
+  const grid = new gridjs.Grid({
     columns: [
       { name: "Date", width: "150px" },
       { name: "Model" },
       { name: "CONO", width: "125px" },
       { name: "Hour", width: "125px" },
       { name: "Type", width: "125px" },
+      { name: "Site", width: "125px" },
     ],
-    data: [
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB035HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB535HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-      ["2024-08-21", "JCB135HD", "SL133", "9584", "E.O+F"],
-    ],
+    data: [], // Start with an empty data array
     search: true,
     sort: true,
     height: "380px",
@@ -650,7 +617,24 @@ function DamTbl() {
         "border-bottom": "1px solid rgba(0, 0, 0, 0.1)",
       },
     },
-  }).render(document.getElementById("DAM_table"));
+  });
+
+  // Fetch data from Google Sheets and populate the Grid.js table
+  google.script.run
+    .withSuccessHandler(function (data) {
+      const parsedData = JSON.parse(data);
+
+      // Populate the Grid.js table with the fetched data
+      grid
+        .updateConfig({
+          data: parsedData, // Set the data for the grid
+        })
+        .forceRender(); // Force the grid to re-render with the new data
+    })
+    .exportData();
+
+  // Render the Grid.js table
+  grid.render(document.getElementById("DAM_table"));
 }
 
 function openDAM() {
