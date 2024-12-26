@@ -95,7 +95,7 @@ function getCheckboxStates() {
 
 // Handle Plate dropdown and related functions for form , trigger the table to show data related to the selected dropdown
 function plate() {
-  let MachineJSON = "scripts/data/machines.json";
+  let MachineJSON = "https://servicecord.vercel.app/v7/dist/scripts/data/machines.json";
   let plateCoNo = document.getElementById("plateCoNo");
 
   let machinesData = [];
@@ -169,7 +169,7 @@ plate(); // Call the function to initialize
 // enabling site input suggestions and adding strict acceptable values
 function Worksites() {
   // address to sites data
-  let availSites = "scripts/data/site.json";
+  let availSites = "https://servicecord.vercel.app/v7/dist/scripts/data/site.json";
   // site input
   let siteInput = document.getElementById("site");
   // site suggestion ul
