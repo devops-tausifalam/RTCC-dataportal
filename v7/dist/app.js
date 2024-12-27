@@ -127,15 +127,19 @@ function plate() {
     } else if (selectedModel) {
       modelInput.value = selectedModel.model; // Update the model field based on selected code
     }
+    // destroy main table instance
+    if (mainTblinstance) {
+      mainTblinstance.destroy(); 
+    }
+    // clear the wrapper
+    document.getElementById("table-wrapper").innerHTML = ""; // empty wrapper
     mainTbl(); // call main table when user types plate number to show service history
   });
 
   // enabling autoSuggestions from machinedata to search input
   let searchPlate = document.getElementById("searchPlate");
   let matchedList = document.getElementById("searchMatches");
-  searchPlate.addEventListener("change", () => {
-    mainTbl(); // call main table when user types plate number to show service history
-  });
+
   searchPlate.addEventListener("input", (event) => {
     const query = event.target.value.toLowerCase(); // get the query in lowercase
     matchedList.innerHTML = ""; // clear ul for new list of search matches
@@ -148,13 +152,21 @@ function plate() {
       filteredData.forEach((item) => {
         const listitem = document.createElement("li");
         listitem.textContent = item.code;
-
+        listitem.id = "plateNode"; // use it in loading data to maintbl
         // add click function to assign values to our input namely the search and the model
         listitem.addEventListener("click", () => {
           searchPlate.value = item.code;
           let modelInput = document.getElementById("model");
           modelInput.value = item.model;
           matchedList.innerHTML = ""; // clear the ul once user selects his desired matched
+
+          if (mainTblinstance) {
+            mainTblinstance.destroy() // destroy main table instance so that new data can be fetched and appended
+          }
+          // clear table wrapper
+          document.getElementById("table-wrapper").innerHTML = ""; // set empty
+          // call main table fxn to load data
+          mainTbl(); // call the fxn to load data related to this list
         });
         matchedList.appendChild(listitem);
       });
@@ -393,9 +405,12 @@ function hideConsent() {
   }
 }
 // table-init
+
+let mainTblinstance = null; // assign this to handle multiple instances
+
 function mainTbl() {
   // Get the values from the input and select elements
-  const searchPlateValue = document.getElementById("searchPlate").value.trim();
+  const searchPlateValue = document.getElementById("plateNode").value.trim();
   const selectedPlateCoNo = document.getElementById("plateCoNo").value.trim();
 
   // Fetch all data using the exportData function
@@ -580,7 +595,7 @@ function printTable() {
 }
 
 // Data Access and Filter
-let gridInstance = null;
+let DAMinstance = null;
 
 function DamTbl() {
   // Initialize the Grid.js table
@@ -647,12 +662,12 @@ function openDAM() {
   let container = document.getElementById("DAM");
   container.style.display = "flex";
   let DAM_table = document.getElementById("DAM_table");
-  if (gridInstance) {
-    gridInstance.destroy(); // Destroy the existing Grid.js instance
+  if (DAMinstance) {
+    DAMinstance.destroy(); // Destroy the existing Grid.js instance
   }
   DAM_table.innerHTML = ""; // Clear the container after destroying
 
-  gridInstance = DamTbl(); // Initialize the table and store the instance
+  DAMinstance = DamTbl(); // Initialize the table and store the instance
 }
 // Closing DAM in desktops and PCs when the active element is not out DAM
 function DAMinactive(e) {
