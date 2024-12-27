@@ -675,9 +675,9 @@ function DAMinactive(e) {
   if (targetElem && !targetElem.contains(e.target)) {
     targetElem.style.display = "none";
     let DAM_table = document.getElementById("DAM_table");
-    if (gridInstance) {
-      gridInstance.destroy(); // Destroy the Grid.js instance
-      gridInstance = null; // Reset the reference
+    if (DAMinstance) {
+      DAMinstance.destroy(); // Destroy the Grid.js instance
+      DAMinstance = null; // Reset the reference
     }
     DAM_table.innerHTML = ""; // Clear the container after destroying
     document.getElementById("searchInput").value = ""; // destroy value of search
@@ -689,9 +689,9 @@ function closeDAM() {
   let container = document.getElementById("DAM");
   container.style.display = "none";
   let DAM_table = document.getElementById("DAM_table");
-  if (gridInstance) {
-    gridInstance.destroy(); // Destroy the Grid.js instance
-    gridInstance = null; // Reset the reference
+  if (DAMinstance) {
+    DAMinstance.destroy(); // Destroy the Grid.js instance
+    DAMinstance = null; // Reset the reference
   }
   DAM_table.innerHTML = ""; // Clear the container after destroying
   document.getElementById("searchInput").value = ""; // destroy value of search
