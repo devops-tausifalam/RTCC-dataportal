@@ -167,17 +167,6 @@ function plate() {
       plateCoNo.disabled = false; // enable the select
     }
   });
-
-  // load data to main table for specific model-plate 
-  document.getElementById("model").addEventListener("change", () => {
-      if (mainTblinstance) {
-        mainTblinstance.destroy() // destroy main table instance so that new data can be fetched and appended
-      }
-      // clear table wrapper
-      document.getElementById("table-wrapper").innerHTML = ""; // set empty
-      // call main table fxn to load data
-      mainTbl(); // call the fxn to load data related to this list
-    })
 }
 plate(); // Call the function to initialize
 
@@ -412,7 +401,7 @@ let mainTblinstance = null; // assign this to handle multiple instances
 
 function mainTbl() {
   // Get the values from the input and select elements
-  const ModelValue = document.getElementById("model").value.trim();
+  const plateValue = document.getElementById("searchPlate").value.trim();
 
   // Fetch all data using the exportData function
   google.script.run.withSuccessHandler(function(data) {
@@ -420,8 +409,8 @@ function mainTbl() {
       
       // Filter the data based on the input and select values
       const filteredData = parsedData.filter(row => {
-          const model = row[1]; // now the matching is according to model
-          return model === ModelValue;
+          const plate = row[2];  // now the matching is according to plate
+          return plate === plateValue;
       });
 
       // Initialize the Grid.js table
@@ -467,6 +456,19 @@ function mainTbl() {
       }).render(document.getElementById("table-wrapper"));
   }).exportData(); // Call the exportData function to get all data
 }
+
+// load tbl data on focus-out 
+  document.getElementById("searchPlate").addEventListener("focusout", () => {
+    if (mainTblinstance) {
+      mainTblinstance.destroy() // destroy main table instance so that new data can be fetched and appended
+    }
+    // clear table wrapper
+    document.getElementById("table-wrapper").innerHTML = ""; // set empty
+    console.log(document.getElementById("searchPlate").value)
+    // call main table fxn to load data
+    mainTbl(); // call the fxn to load data related to this list
+});
+
 // Print Functionality
 // Print function to print the grid
 function printTable() {
@@ -517,7 +519,7 @@ function printTable() {
     body::after {
         content: "RTCC";
         /* Your watermark text */
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%) rotate(-45deg);
