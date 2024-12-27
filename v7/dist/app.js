@@ -321,12 +321,10 @@ let mainTblinstance = null; // assign this to handle multiple instances
 function mainTbl() {
   // Get the values from the input and select elements
   const plateValue = document.getElementById("searchPlate").value.trim();
-  console.log("Plate Value:", plateValue); // Log the plate value for debugging
 
   // Fetch all data using the exportData function
   google.script.run.withSuccessHandler(function(data) {
       const parsedData = JSON.parse(data);
-      console.log("Parsed Data:", parsedData); // Log the parsed data for debugging
 
       // Filter the data based on the input plate value
       const filteredData = parsedData.filter(row => {
@@ -334,9 +332,6 @@ function mainTbl() {
           // Check if plate is defined and perform the comparison
           return plate && plate.toString().trim().toLowerCase() === plateValue.toLowerCase();
       });
-
-      // Log the filtered data for debugging
-      console.log("Filtered Data:", filteredData);
 
       // Initialize the Grid.js table
       if (mainTblinstance) {
