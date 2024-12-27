@@ -321,15 +321,15 @@ let mainTblinstance = null; // assign this to handle multiple instances
 function mainTbl() {
   // Get the values from the input and select elements
   const plateValue = document.getElementById("searchPlate").value.trim();
-
+  console.log(plateValue);
   // Fetch all data using the exportData function
   google.script.run.withSuccessHandler(function(data) {
       const parsedData = JSON.parse(data);
       console.log(parsedData);
       // Filter the data based on the input and select values
       const filteredData = parsedData.filter(row => {
-          const plate = row[2];  // now the matching is according to plate
-          return plate === plateValue;
+          const plate = row[2].trim();  // now the matching is according to plate
+          return plate.toLowerCase() === plateValue.toLowerCase();
       });
 
       // Initialize the Grid.js table
