@@ -152,21 +152,12 @@ function plate() {
       filteredData.forEach((item) => {
         const listitem = document.createElement("li");
         listitem.textContent = item.code;
-        listitem.id = "plateNode"; // use it in loading data to maintbl
         // add click function to assign values to our input namely the search and the model
         listitem.addEventListener("click", () => {
           searchPlate.value = item.code;
           let modelInput = document.getElementById("model");
           modelInput.value = item.model;
           matchedList.innerHTML = ""; // clear the ul once user selects his desired matched
-
-          if (mainTblinstance) {
-            mainTblinstance.destroy() // destroy main table instance so that new data can be fetched and appended
-          }
-          // clear table wrapper
-          document.getElementById("table-wrapper").innerHTML = ""; // set empty
-          // call main table fxn to load data
-          mainTbl(); // call the fxn to load data related to this list
         });
         matchedList.appendChild(listitem);
       });
@@ -176,6 +167,17 @@ function plate() {
       plateCoNo.disabled = false; // enable the select
     }
   });
+
+  // load data to main table for specific model-plate 
+    modelInput.addEventListener("change", () => {
+      if (mainTblinstance) {
+        mainTblinstance.destroy() // destroy main table instance so that new data can be fetched and appended
+      }
+      // clear table wrapper
+      document.getElementById("table-wrapper").innerHTML = ""; // set empty
+      // call main table fxn to load data
+      mainTbl(); // call the fxn to load data related to this list
+    })
 }
 plate(); // Call the function to initialize
 
@@ -410,7 +412,7 @@ let mainTblinstance = null; // assign this to handle multiple instances
 
 function mainTbl() {
   // Get the values from the input and select elements
-  const searchPlateValue = document.getElementById("plateNode").value.trim();
+  const searchPlateValue = document.getElementById("modelInput").value.trim();
   const selectedPlateCoNo = document.getElementById("plateCoNo").value.trim();
 
   // Fetch all data using the exportData function
