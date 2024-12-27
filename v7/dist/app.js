@@ -169,7 +169,7 @@ function plate() {
   });
 
   // load data to main table for specific model-plate 
-    modelInput.addEventListener("change", () => {
+  document.getElementById("model").addEventListener("change", () => {
       if (mainTblinstance) {
         mainTblinstance.destroy() // destroy main table instance so that new data can be fetched and appended
       }
