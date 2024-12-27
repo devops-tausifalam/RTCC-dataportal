@@ -328,7 +328,7 @@ function mainTbl() {
       console.log(parsedData);
       // Filter the data based on the input and select values
       const filteredData = parsedData.filter(row => {
-          const plate = row[2].trim();  // now the matching is according to plate
+          const plate = row[2];  // now the matching is according to plate
           return plate.toLowerCase() === plateValue.toLowerCase();
       });
 
