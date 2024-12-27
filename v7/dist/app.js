@@ -321,18 +321,28 @@ let mainTblinstance = null; // assign this to handle multiple instances
 function mainTbl() {
   // Get the values from the input and select elements
   const plateValue = document.getElementById("searchPlate").value.trim();
-  console.log(plateValue);
+  console.log("Plate Value:", plateValue); // Log the plate value for debugging
+
   // Fetch all data using the exportData function
   google.script.run.withSuccessHandler(function(data) {
       const parsedData = JSON.parse(data);
-      console.log(parsedData);
-      // Filter the data based on the input and select values
+      console.log("Parsed Data:", parsedData); // Log the parsed data for debugging
+
+      // Filter the data based on the input plate value
       const filteredData = parsedData.filter(row => {
-          const plate = row[2];  // now the matching is according to plate
-          return plate.toLowerCase() === plateValue.toLowerCase();
+          const plate = row[2];  // Assuming the plate number is in the third column (index 2)
+          // Check if plate is defined and perform the comparison
+          return plate && plate.toString().trim().toLowerCase() === plateValue.toLowerCase();
       });
 
+      // Log the filtered data for debugging
+      console.log("Filtered Data:", filteredData);
+
       // Initialize the Grid.js table
+      if (mainTblinstance) {
+          mainTblinstance.destroy(); // Destroy the existing instance if it exists
+      }
+
       const grid = new gridjs.Grid({
           columns: [
               { name: "Date", width: "150px" },
@@ -373,6 +383,9 @@ function mainTbl() {
               },
           },
       }).render(document.getElementById("table-wrapper"));
+
+      // Store the instance for future reference
+      mainTblinstance = grid;
   }).exportData(); // Call the exportData function to get all data
 }
 // Handle Plate dropdown and related functions for form , trigger the table to show data related to the selected dropdown
