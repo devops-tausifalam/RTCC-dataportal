@@ -412,8 +412,7 @@ let mainTblinstance = null; // assign this to handle multiple instances
 
 function mainTbl() {
   // Get the values from the input and select elements
-  const searchPlateValue = document.getElementById("modelInput").value.trim();
-  const selectedPlateCoNo = document.getElementById("plateCoNo").value.trim();
+  const ModelValue = document.getElementById("model").value.trim();
 
   // Fetch all data using the exportData function
   google.script.run.withSuccessHandler(function(data) {
@@ -421,8 +420,8 @@ function mainTbl() {
       
       // Filter the data based on the input and select values
       const filteredData = parsedData.filter(row => {
-          const plateValue = row[2]; // Assuming the 3rd column is "CONO" or "PLATE"
-          return plateValue === searchPlateValue || plateValue === selectedPlateCoNo;
+          const model = row[1]; // now the matching is according to model
+          return model === ModelValue;
       });
 
       // Initialize the Grid.js table
