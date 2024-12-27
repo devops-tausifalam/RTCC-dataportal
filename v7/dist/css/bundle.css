@@ -621,6 +621,9 @@ div#otherMethod input#searchInput:focus {
 .dataAccessModal #DAM_table {
   height: 100%;
 }
+.dataAccessModal #DAM_table .gridjs-pagination button {
+  color: #007bff;
+}
 
 @media screen and (max-width: 768px) {
   .dataAccessModal {
