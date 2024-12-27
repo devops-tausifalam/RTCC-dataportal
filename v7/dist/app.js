@@ -612,10 +612,6 @@ function DamTbl() {
     search: true,
     sort: true,
     height: "380px",
-    pagination: {
-      limit: 10,
-      summary: true,
-    },
     language: {
       search: {
         placeholder: "Find specific data...",
