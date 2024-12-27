@@ -612,6 +612,10 @@ function DamTbl() {
     search: true,
     sort: true,
     height: "380px",
+    pagination: {
+      limit: 10,
+      summary: true,
+    },
     language: {
       search: {
         placeholder: "Find specific data...",
@@ -644,7 +648,6 @@ function DamTbl() {
   google.script.run
     .withSuccessHandler(function (data) {
       const parsedData = JSON.parse(data);
-
       // Populate the Grid.js table with the fetched data
       grid
         .updateConfig({
