@@ -89,87 +89,6 @@ function getCheckboxStates() {
   return servicesCheck;
 }
 
-// Handle Plate dropdown and related functions for form , trigger the table to show data related to the selected dropdown
-function plate() {
-  let MachineJSON =
-    "https://servicecord.vercel.app/v7/dist/scripts/data/machines.json";
-  let plateCoNo = document.getElementById("plateCoNo");
-
-  let machinesData = [];
-  // Fetch the data only once, not on every click
-  fetch(MachineJSON)
-    .then((resp) => resp.json())
-    .then((data) => {
-      machinesData = data;
-      data.forEach((item) => {
-        let opt = document.createElement("option");
-        opt.value = item.code;
-        opt.textContent = item.code;
-        plateCoNo.appendChild(opt);
-      });
-    })
-    .catch((error) => {
-      let formError = document.getElementById("formError");
-      formError.textContent = error;
-      setTimeout(() => {
-        formError.textContent = ""; // Remove error message after 2.5s
-      }, 2500);
-    });
-
-  // Use 'change' event to handle modelInput update
-  plateCoNo.addEventListener("change", (event) => {
-    let modelInput = document.getElementById("model");
-    const selectedModel = machinesData.find(
-      (item) => item.code === plateCoNo.value
-    );
-    if (plateCoNo.value === "") {
-      modelInput.value = "";
-    } else if (selectedModel) {
-      modelInput.value = selectedModel.model; // Update the model field based on selected code
-    }
-    // destroy main table instance
-    if (mainTblinstance) {
-      mainTblinstance.destroy(); 
-    }
-    // clear the wrapper
-    document.getElementById("table-wrapper").innerHTML = ""; // empty wrapper
-    mainTbl(); // call main table when user types plate number to show service history
-  });
-
-  // enabling autoSuggestions from machinedata to search input
-  let searchPlate = document.getElementById("searchPlate");
-  let matchedList = document.getElementById("searchMatches");
-
-  searchPlate.addEventListener("input", (event) => {
-    const query = event.target.value.toLowerCase(); // get the query in lowercase
-    matchedList.innerHTML = ""; // clear ul for new list of search matches
-
-    if (query) {
-      const filteredData = machinesData.filter((item) => {
-        return item.code.toLowerCase().includes(query);
-      });
-
-      filteredData.forEach((item) => {
-        const listitem = document.createElement("li");
-        listitem.textContent = item.code;
-        // add click function to assign values to our input namely the search and the model
-        listitem.addEventListener("click", () => {
-          searchPlate.value = item.code;
-          let modelInput = document.getElementById("model");
-          modelInput.value = item.model;
-          matchedList.innerHTML = ""; // clear the ul once user selects his desired matched
-        });
-        matchedList.appendChild(listitem);
-      });
-
-      plateCoNo.disabled = true; // disabled the select to avoid multiple selections
-    } else {
-      plateCoNo.disabled = false; // enable the select
-    }
-  });
-}
-plate(); // Call the function to initialize
-
 // enabling site input suggestions and adding strict acceptable values
 function Worksites() {
   // address to sites data
@@ -406,7 +325,7 @@ function mainTbl() {
   // Fetch all data using the exportData function
   google.script.run.withSuccessHandler(function(data) {
       const parsedData = JSON.parse(data);
-      
+      console.log(parsedData);
       // Filter the data based on the input and select values
       const filteredData = parsedData.filter(row => {
           const plate = row[2];  // now the matching is according to plate
@@ -456,18 +375,98 @@ function mainTbl() {
       }).render(document.getElementById("table-wrapper"));
   }).exportData(); // Call the exportData function to get all data
 }
+// Handle Plate dropdown and related functions for form , trigger the table to show data related to the selected dropdown
+function plate() {
+  let MachineJSON =
+    "https://servicecord.vercel.app/v7/dist/scripts/data/machines.json";
+  let plateCoNo = document.getElementById("plateCoNo");
+
+  let machinesData = [];
+  // Fetch the data only once, not on every click
+  fetch(MachineJSON)
+    .then((resp) => resp.json())
+    .then((data) => {
+      machinesData = data;
+      data.forEach((item) => {
+        let opt = document.createElement("option");
+        opt.value = item.code;
+        opt.textContent = item.code;
+        plateCoNo.appendChild(opt);
+      });
+    })
+    .catch((error) => {
+      let formError = document.getElementById("formError");
+      formError.textContent = error;
+      setTimeout(() => {
+        formError.textContent = ""; // Remove error message after 2.5s
+      }, 2500);
+    });
+
+  // Use 'change' event to handle modelInput update
+  plateCoNo.addEventListener("change", (event) => {
+    let modelInput = document.getElementById("model");
+    const selectedModel = machinesData.find(
+      (item) => item.code === plateCoNo.value
+    );
+    if (plateCoNo.value === "") {
+      modelInput.value = "";
+    } else if (selectedModel) {
+      modelInput.value = selectedModel.model; // Update the model field based on selected code
+    }
+    // destroy main table instance
+    if (mainTblinstance) {
+      mainTblinstance.destroy(); 
+    }
+    // clear the wrapper
+    document.getElementById("table-wrapper").innerHTML = ""; // empty wrapper
+    mainTbl(); // call main table when user types plate number to show service history
+  });
+
+  // enabling autoSuggestions from machinedata to search input
+  let searchPlate = document.getElementById("searchPlate");
+  let matchedList = document.getElementById("searchMatches");
+
+  searchPlate.addEventListener("input", (event) => {
+    const query = event.target.value.toLowerCase(); // get the query in lowercase
+    matchedList.innerHTML = ""; // clear ul for new list of search matches
+
+    if (query) {
+      const filteredData = machinesData.filter((item) => {
+        return item.code.toLowerCase().includes(query);
+      });
+
+      filteredData.forEach((item) => {
+        const listitem = document.createElement("li");
+        listitem.textContent = item.code;
+        // add click function to assign values to our input namely the search and the model
+        listitem.addEventListener("click", () => {
+          searchPlate.value = item.code;
+          let modelInput = document.getElementById("model");
+          modelInput.value = item.model;
+          matchedList.innerHTML = ""; // clear the ul once user selects his desired matched
+        });
+        matchedList.appendChild(listitem);
+      });
+
+      plateCoNo.disabled = true; // disabled the select to avoid multiple selections
+    } else {
+      plateCoNo.disabled = false; // enable the select
+    }
+  });
+}
+plate(); // Call the function to initialize
 
 // load tbl data on focus-out 
-  document.getElementById("searchPlate").addEventListener("focusout", () => {
-    if (mainTblinstance) {
-      mainTblinstance.destroy() // destroy main table instance so that new data can be fetched and appended
-    }
-    // clear table wrapper
-    document.getElementById("table-wrapper").innerHTML = ""; // set empty
-    console.log(document.getElementById("searchPlate").value)
-    // call main table fxn to load data
-    mainTbl(); // call the fxn to load data related to this list
+document.getElementById("searchPlate").addEventListener("focusout", () => {
+  if (mainTblinstance) {
+    mainTblinstance.destroy() // destroy main table instance so that new data can be fetched and appended
+  }
+  // clear table wrapper
+  document.getElementById("table-wrapper").innerHTML = ""; // set empty
+  // call main table fxn to load data
+  mainTbl(); // call the fxn to load data related to this list
 });
+
 
 // Print Functionality
 // Print function to print the grid
