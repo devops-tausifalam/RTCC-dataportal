@@ -1,10 +1,12 @@
 {
-    "redirects": [
-      {
-        "source": "/",
-        "destination": "/v7/dist/app.html",
-        "permanent": true
-      }
-    ]
-  }
-  
+  "rewrites": [
+    {
+      "source": "/comingsoon.html",
+      "destination": "/comingsoon.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/comingsoon.html"
+    }
+  ]
+}
