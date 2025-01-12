@@ -8,5 +8,6 @@
       "source": "/(.*)",
       "destination": "/comingsoon.html"
     }
-  ]
+  ],
+  "cleanUrls": true,
 }
