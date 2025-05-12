@@ -1,0 +1,24 @@
+{
+  "name": "blue-mango",
+  "version": "8.0.0",
+  "description": "Project BlueMango is aimed to help site maintainance workers submit and retrieve work logs with ease with integration of google sheets and appscript logic",
+  "keywords": [
+    "blue-mango",
+    "software"
+  ],
+  "homepage": "https://github.com/devops-tausifalam/RTCC-dataportal#readme",
+  "bugs": {
+    "url": "https://github.com/devops-tausifalam/RTCC-dataportal/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devops-tausifalam/RTCC-dataportal.git"
+  },
+  "license": "ISC",
+  "author": "Tausif Alam",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  }
+}
