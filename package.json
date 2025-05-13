@@ -1,24 +1,27 @@
 {
-  "name": "blue-mango",
-  "version": "8.0.0",
-  "description": "Project BlueMango is aimed to help site maintainance workers submit and retrieve work logs with ease with integration of google sheets and appscript logic",
-  "keywords": [
-    "blue-mango",
-    "software"
-  ],
-  "homepage": "https://github.com/devops-tausifalam/RTCC-dataportal#readme",
-  "bugs": {
-    "url": "https://github.com/devops-tausifalam/RTCC-dataportal/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/devops-tausifalam/RTCC-dataportal.git"
-  },
-  "license": "ISC",
-  "author": "Tausif Alam",
-  "type": "commonjs",
-  "main": "index.js",
+  "name": "rtcc-dataportal",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "test"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "vite": "^6.3.5"
   }
 }
