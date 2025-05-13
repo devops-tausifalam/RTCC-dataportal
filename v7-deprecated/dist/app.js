@@ -93,7 +93,7 @@ function getCheckboxStates() {
 function Worksites() {
   // address to sites data
   let availSites =
-    "https://servicecord.vercel.app/v7/dist/scripts/data/site.json";
+    "./scripts/data/site.json";
   // site input
   let siteInput = document.getElementById("site");
   // site suggestion ul
@@ -386,7 +386,7 @@ function mainTbl() {
 // Handle Plate dropdown and related functions for form , trigger the table to show data related to the selected dropdown
 function plate() {
   let MachineJSON =
-    "https://servicecord.vercel.app/v7/dist/scripts/data/machines.json";
+    "./scripts/data/machines.json";
   let plateCoNo = document.getElementById("plateCoNo");
 
   let machinesData = [];
