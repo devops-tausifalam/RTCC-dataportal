@@ -18,9 +18,9 @@ function MiscInputs() {
           id="type"
           name="type"
           autoComplete="off"
-          placeholder="readonly"
+          placeholder="Serivce Type (autofill)"
           required
-          readOnly
+          disabled
         />
 
         <label htmlFor="site">Site:</label>

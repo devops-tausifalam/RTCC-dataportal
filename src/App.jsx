@@ -1,4 +1,4 @@
-import RTCC from './components/home.jsx';
+import RTCC from './home.jsx';
 import './App.css'
 
 function App() {
