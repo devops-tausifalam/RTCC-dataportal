@@ -3,11 +3,6 @@
     {
       "source": "/comingsoon.html",
       "destination": "/comingsoon.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/comingsoon.html"
     }
-  ],
-  "cleanUrls": true
+  ]
 }
