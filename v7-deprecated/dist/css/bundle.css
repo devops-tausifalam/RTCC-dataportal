@@ -1,0 +1,691 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  /* Prevent overflow of body content */
+}
+
+.outer-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.form-wrapper {
+  padding: 5px;
+  width: 60%;
+  box-sizing: border-box;
+  background: #ffffff;
+  flex-shrink: 1;
+  /* Allow shrinking on small screens */
+  overflow-y: scroll;
+}
+
+.record-wrapper {
+  padding: 10px;
+  width: 40%;
+  background: #000000;
+  background-blend-mode: multiply;
+  box-sizing: border-box;
+  flex-shrink: 1;
+  /* Allow shrinking on small screens */
+  overflow-y: scroll;
+}
+
+@media screen and (max-width: 768px) {
+  .content-wrapper {
+    display: block;
+    overflow: scroll;
+  }
+  .form-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+    /* Adds spacing between form and record wrapper */
+  }
+  .record-wrapper {
+    width: 100%;
+  }
+}
+form#serviceForm {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+form#serviceForm h2 {
+  margin: 3px 0;
+}
+form#serviceForm h2 strong {
+  color: #FF2929;
+  font-size: 0.9rem;
+}
+
+div.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: auto 10px;
+}
+div.grid .engineService {
+  grid-column: 1;
+  grid-row: 1;
+}
+div.grid .hydService {
+  grid-column: 2;
+  grid-row: 1;
+}
+div.grid .transService {
+  grid-column: 1;
+  grid-row: 2;
+}
+div.grid .otherService {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+div.grid-2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 5px;
+}
+div.grid-2 input {
+  width: 100%;
+}
+div.grid-2 label {
+  background-color: #E85C0D;
+  color: #000000;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: 700;
+}
+
+div.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5px;
+}
+
+input {
+  outline: none;
+  padding: 6px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  flex-grow: 1;
+}
+input:focus {
+  border: 2px solid #0D92F4;
+}
+input:not([type=checkbox]) {
+  margin: 10px 0;
+}
+input#battery {
+  width: 95%;
+}
+input#battery::placeholder {
+  font-weight: 600;
+}
+input.error {
+  border: 2px solid #FF2929;
+}
+
+button {
+  padding: 6px;
+  border-radius: 3px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease-in-out;
+  background-color: #E85C0D;
+  color: #ffffff;
+  cursor: pointer;
+}
+button:active {
+  background-color: #77CDFF;
+}
+
+h4 {
+  font-size: 0.8rem;
+  color: #E85C0D;
+}
+
+.input-labels {
+  font-size: 1rem;
+}
+
+label span.english-text,
+span.arabic-text {
+  font-size: 1rem;
+}
+
+.top-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5px;
+  width: 100%;
+  flex: 1 1 0;
+  box-sizing: border-box;
+  position: relative;
+}
+.top-container label {
+  display: none;
+}
+.top-container input {
+  width: 100%;
+  outline: none;
+  padding: 6px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+.top-container #plateCoNo {
+  outline: none;
+  padding: 6px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+.top-container #plateCoNo:focus {
+  border: 2px solid #0D92F4;
+}
+
+.input-container {
+  position: relative;
+}
+
+.suggestionList {
+  box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Style each list item */
+.suggestionList li {
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+/* Add hover effect */
+.suggestionList li:hover {
+  background-color: #f1f1f1;
+  color: #007BFF;
+}
+
+/* Focus state for accessibility */
+.suggestionList li:focus {
+  outline: none;
+  background-color: #f1f1f1;
+  color: #007BFF;
+}
+
+.suggestionList.siteList {
+  top: -10px;
+}
+
+@media screen and (max-width: 768px) {
+  div.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  div.grid-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  input[type=date] {
+    position: relative;
+    width: 100%;
+    padding: 6px 6px 6px 80px;
+    /* Adjusts padding to create space for the custom label */
+    font-size: 12px;
+    background-color: #f4f4f4;
+    /* Light background for the input */
+    border: 1px solid #ccc;
+    /* Border for the input */
+    border-radius: 5px;
+    /* Rounded corners */
+  }
+  input[type=date]::before {
+    content: "Select Date";
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: #aaa;
+    /* Light gray color for the label */
+    pointer-events: none;
+    /* Prevents interference with clicking */
+    transition: opacity 0.3s ease-in-out;
+  }
+  input[type=date],
+  #plateCoNo {
+    width: 100%;
+  }
+  .top-container {
+    flex-direction: column;
+  }
+  .top-container .suggestionList:not(.siteList) {
+    top: 50%;
+  }
+}
+.record-wrapper h2 {
+  color: #ffffff;
+  margin: auto 5px;
+}
+.record-wrapper .nav {
+  display: flex;
+  flex: 1 1 0;
+  width: 100%;
+}
+.record-wrapper .nav button {
+  outline: none;
+  border: 2px solid #ffaa00;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #ffffff;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+  grid-column: 2;
+}
+.record-wrapper .nav button:focus {
+  border-color: #ff8800;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+.record-wrapper .nav button:hover {
+  background-color: #ff8800;
+  border-color: #ff8800;
+}
+.record-wrapper .nav button:active {
+  background-color: rgb(229.5, 122.4, 0);
+  border-color: rgb(229.5, 122.4, 0);
+  transform: translateY(2px);
+}
+
+.consentModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  box-sizing: border-box;
+  padding: 20px;
+  width: min(600px, 90%);
+  background-color: #ffffff;
+  /* White background */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  color: #333333;
+  /* Dark grey text */
+  overflow: hidden;
+}
+
+.consentModal .flex-down {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.consentModal .flex-down input[type=checkbox] {
+  accent-color: #0077cc;
+  /* Blue checkbox accent */
+  transform: scale(1.2);
+}
+
+.consentModal .flex-up {
+  margin-bottom: 15px;
+  overflow-x: scroll;
+}
+
+.consentModal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px auto;
+}
+
+.consentModal th,
+.consentModal td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.consentModal th {
+  background-color: #0077cc;
+  /* Blue header */
+  color: #ffffff;
+  /* White text for header */
+  font-weight: bold;
+}
+
+.consentModal tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  /* Light grey hover */
+  overflow-x: scroll;
+}
+
+.consentModal button {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.consentModal button:first-of-type {
+  background-color: #0077cc;
+  /* Blue primary button */
+  color: #ffffff;
+  /* White text */
+}
+
+.consentModal button:first-of-type:hover {
+  background-color: #005fa3;
+  /* Darker blue on hover */
+}
+
+.consentModal button:last-of-type {
+  background-color: rgba(0, 0, 0, 0.05);
+  /* Light grey button */
+  color: #333333;
+  /* Dark grey text */
+}
+
+.consentModal button:last-of-type:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Darker grey on hover */
+}
+
+.dataAccessModal {
+  display: none;
+  /* flex */
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  width: 800px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+div.left-access {
+  width: 40%;
+}
+
+div.right-access {
+  width: 60%;
+  padding: 0;
+  margin: 0;
+}
+div.right-access .gridjs-wrapper {
+  box-shadow: none;
+}
+
+/* Modal header */
+.dataAccessModal h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.dataAccessModal h3 button {
+  opacity: 0;
+  outline: none;
+  border: none;
+  color: #333;
+  background: none;
+  cursor: pointer;
+}
+
+/* Modal description */
+/* Date input styles */
+.dataAccessModal label {
+  display: block;
+  font-size: 0.9em;
+  color: #444;
+  margin-bottom: 5px;
+}
+
+.dataAccessModal input[type=date] {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  appearance: none;
+  padding-left: 10px;
+}
+
+#dateMethod {
+  display: block;
+}
+
+#otherMethod {
+  display: none;
+}
+
+div#otherMethod input#searchInput {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  appearance: none;
+  padding-left: 10px;
+}
+
+div#otherMethod input#searchInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.dataAccessModal select {
+  width: calc(100% - 20px);
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  outline: none;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+  appearance: none;
+  padding-left: 10px;
+}
+
+.dataAccessModal select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Target the input element */
+.dataAccessModal input[type=date] {
+  position: relative;
+  padding-left: 10px;
+  /* Adjust padding for space */
+}
+
+/* Hide the placeholder when the input is focused */
+.dataAccessModal input[type=date]:focus::placeholder {
+  color: transparent;
+}
+
+/* Ensure the placeholder disappears when the input is not empty */
+.dataAccessModal input[type=date]:not(:placeholder-shown) {
+  padding-left: 10px;
+  /* Adjust padding once input has value */
+}
+
+/* Use content to add a pseudo-placeholder (this works around overlap) */
+.dataAccessModal input[type=date]:empty::before {
+  content: attr(placeholder);
+  /* Insert placeholder text */
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: gray;
+  /* Placeholder color */
+  pointer-events: none;
+  /* Make sure it doesn't block interaction */
+}
+
+.dataAccessModal input[type=date]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button group styles */
+.dataAccessModal .btngroup {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dataAccessModal .btngroup button {
+  flex: 1;
+  margin: 5px;
+  padding: 10px 5px;
+  font-size: 0.7rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+}
+
+.dataAccessModal .btngroup button:active {
+  background-color: #579ce7;
+}
+
+/* Remove backdrop filter */
+.dataAccessModal::before {
+  display: none;
+}
+
+.dataAccessModal #DAM_table {
+  height: 100%;
+}
+.dataAccessModal #DAM_table .gridjs-pagination button {
+  color: #007bff;
+}
+
+@media screen and (max-width: 768px) {
+  .dataAccessModal {
+    width: 90%;
+    /* Adjust width to fit smaller screens */
+    padding: 15px;
+    /* Reduce padding for smaller screens */
+    box-shadow: none;
+    /* Remove box-shadow for mobile devices */
+  }
+  div.left-access {
+    width: 100%;
+    /* Stack the columns vertically */
+    padding: 0;
+  }
+  div.right-access {
+    display: none;
+  }
+  /* Modal header */
+  .dataAccessModal h3 {
+    font-size: 1.2em;
+    /* Reduce font size */
+  }
+  .dataAccessModal h3 button {
+    opacity: 1;
+  }
+  /* Modal description */
+  .dataAccessModal p {
+    font-size: 0.8em;
+    /* Adjust font size for better readability */
+  }
+  /* Date input styles */
+  .dataAccessModal input[type=date] {
+    width: 100%;
+    /* Ensure input takes full width */
+    padding: 12px;
+    /* Increase padding for ease of interaction */
+    font-size: 1em;
+    /* Slightly larger font size for easier readability */
+  }
+  .dataAccessModal .btngroup {
+    flex-direction: column;
+    /* Stack buttons vertically */
+    width: 100%;
+  }
+  .dataAccessModal .btngroup button {
+    margin: 5px 0;
+    /* Adjust margin for vertical button layout */
+    padding: 12px;
+    /* Increase padding for easier tapping */
+    font-size: 1rem;
+    /* Larger font size for mobile readability */
+  }
+  .dataAccessModal .btngroup button:nth-child(1) {
+    display: none;
+  }
+  .dataAccessModal select {
+    width: 100%;
+  }
+  div#otherMethod input#searchInput {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=bundle.css.map */
